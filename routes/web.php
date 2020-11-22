@@ -50,3 +50,19 @@ Route::get('/ceklogin', 'ControllerHalaman@login');
 Route::get('/topup', 'ControllerHalaman@TopUp');
 Route::post('/delete','ControllerHalaman@deleteSession');
 
+Route::group(['prefix' => 'admin'], function() {
+    Route::group(['prefix' => 'barang'], function() {
+        Route::get('/', 'AdminController@allbarang');
+        Route::post('/insert', 'AdminController@insert');
+        Route::post('/update/{id}', 'AdminController@update');
+        Route::post('/delete/{id}', 'AdminController@delete');
+    });
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'AdminController@alluser');
+        Route::post('/action/{id}', 'AdminController@action');
+    });
+    //jaga2 ada fitur tambahan
+    Route::group(['prefix' => 'trans'], function() {
+        Route::get('/', 'AdminController@alltrans');
+    });
+});
