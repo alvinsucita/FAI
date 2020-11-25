@@ -1,20 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class usermodel extends Model
+class penginapanmodel extends Model
 {
     protected $connection= 'mysql';
-    protected $table= 'user';
+    protected $table= 'penginapan';
     public $timestamps = false;
     protected $fillable = [
-        'username',
-        'password',
-        'email',
-        'tanggallahir',
+        'nama_penginapan',
         'alamat',
-        'nohp'
+        'link',
+        'harga'
     ];
 }
