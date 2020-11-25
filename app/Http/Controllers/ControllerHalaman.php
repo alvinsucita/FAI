@@ -83,14 +83,19 @@ class ControllerHalaman extends Controller
     function login(Request $request) {
         $username = $request->input('username');
         $password = $request->input('password');
-        $check = usermodel::find([$username,$password]);
+        $user = usermodel::where('username', '=', $username)->first();
         if($username == "888" && $password == "888")
         {
             return view('components.admin');
         }
-        else if(count($check)>0){
-            $users = usermodel::find($username);
-            return view('components.profile',['users'=>$users]);
+        else if($user != null){
+            if($user->password == $password)
+            {
+                $request->session()->put('username',$username);
+                return view('components.profile',[
+                    'username' => $request->session()->get('username'),
+                ]);
+            }
         }
         else
         {
