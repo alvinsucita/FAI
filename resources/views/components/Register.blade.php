@@ -3,6 +3,7 @@
     <!-- isset ini untuk melakukan pengecekan apakah isi dari $angka ada isinya, supaya tidak error ketika isi dari $angka adalah kosong-->
     <div style="max-width: 300px; margin:auto;"><br><br>
         <form method = "POST" action="{{ url('/insertBaru') }}">
+            <img src="adminlte/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
             <input  name="username" type="text" placeholder="Username"style="border-radius: 6px; width:300px; height:30px;"><br><br>
             @csrf
             @error('username')
