@@ -30,9 +30,9 @@ Route::get('/Login', function () {
 Route::get('/Register', function () {
     return view('components.Register');
 });
-Route::get('/Admin', function () {
-    return view('components.admin');
-});
+// Route::get('/Admin', function () {
+//     return view('components.admin');
+// });
 Route::get('/product', function () {
     return view('components.product');
 });
@@ -65,4 +65,5 @@ Route::group(['prefix' => 'admin'], function() {
     Route::group(['prefix' => 'trans'], function() {
         Route::get('/', 'AdminController@alltrans');
     });
+    Route::get('/', 'AdminController@login');
 });

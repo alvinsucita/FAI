@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\usermodel;
-use App\penginapanmodel;
-use App\vouchermodel;
+use App\Model\usermodel;
+use App\Model\penginapanmodel;
+use App\Model\vouchermodel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

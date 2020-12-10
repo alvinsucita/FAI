@@ -8,7 +8,7 @@
         <a href="/">Home</a>
         <a href="/Login">Login</a>
         <a href="/Register">Register</a>
-        <a href="/Admin">Admin</a>
+        <a href="/admin">Admin</a>
         <a href="/profiluser">Profil User</a>
         <a href="/aboutus">About Us</a>
     </div>
