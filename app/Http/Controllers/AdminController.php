@@ -9,5 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-
+    function home(){
+        return view('admin.dashboard');
+    }
+    function login(){
+        return view('admin.dashboard');
+    }
 }

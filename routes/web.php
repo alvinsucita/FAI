@@ -64,6 +64,8 @@ Route::group(['prefix' => 'admin'], function() {
     //jaga2 ada fitur tambahan
     Route::group(['prefix' => 'trans'], function() {
         Route::get('/', 'AdminController@alltrans');
+        Route::get('/detail/{id}', 'AdminController@detailtrans');
     });
-    Route::get('/', 'AdminController@login');
+    Route::get('/', 'AdminController@home');
+    // Route::get('/', 'AdminController@login');
 });
