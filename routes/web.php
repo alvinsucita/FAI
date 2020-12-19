@@ -79,6 +79,8 @@ Route::group(['middleware' => 'login-user'], function() {
         Route::post('/change_p', 'UserController@change_p');
         Route::get('/edit_profile', 'UserController@profile');
         Route::post('/edit_prof', 'UserController@edit_prof');
+        Route::get('/cart', 'UserController@cart');
         // Route::get('/', 'UserController@home');
+        Route::get('/aboutus', 'UserController@aboutus');
     });
 });

@@ -19,8 +19,14 @@ class UserController extends Controller
         $user = $request->session()->get('auth');
         return view('user.home', ['user' => $user]);
     }
-    function cart(){
-        return view('user.cart');
+    function aboutus(Request $request){
+        $user = $request->session()->get('auth');
+        return view('user.aboutus', ['user' => $user]);
+    }
+    function cart(Request $request){
+        $user = $request->session()->get('auth');
+        $cart = $request->session()->get('cart');
+        return view('user.cart', ['user' => $user, 'cart' => $cart]);
     }
     function history(){
         return view('user.history');

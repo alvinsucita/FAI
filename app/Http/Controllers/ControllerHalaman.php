@@ -91,6 +91,7 @@ class ControllerHalaman extends Controller
         else if($user != null){
             if($user->password == $password)
             {
+                $request->session()->put('cart', "");
                 $request->session()->put('auth', $user);
                 return redirect('/user');
             }
