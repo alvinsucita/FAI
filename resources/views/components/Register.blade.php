@@ -35,5 +35,7 @@
             @enderror
             <button type="submit" value="APPLY FILTER" style="border-radius: 6px; width: 300px; height: 45px; background-color: rgb(23, 35, 63); color: white; cursor: pointer;">Sign Up</button><br><br><br>
         </form>
+        or
+        <a href="/Login" style="color:blue"><u>go to Login</u></a><br>
     </div>
 @endsection

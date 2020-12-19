@@ -8,7 +8,7 @@
         <input type="text" placeholder="Search Something Here"style="border-radius: 6px 0px 0px 6px;height:30px;"><input type="submit" value="Search" style="cursor: pointer; background-color: rgb(23, 35, 63); color: white; border-radius: 0px 6px 6px 0px;height:35px;">
         <br><br><br>
         <b>BRANDS</b><br><br>
-        <input type="checkbox" name="brand">Balenciaga <br><br>
+        <input type="checkbox" name="brand">a <br><br>
         <input type="checkbox" name="brand">Givenchy <br><br>
         <input type="checkbox" name="brand">Gucci <br><br>
         <input type="checkbox" name="brand">Kenzo <br><br>
