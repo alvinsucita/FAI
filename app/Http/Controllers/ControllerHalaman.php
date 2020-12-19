@@ -91,10 +91,8 @@ class ControllerHalaman extends Controller
         else if($user != null){
             if($user->password == $password)
             {
-                $request->session()->put('username',$username);
-                return view('components.profile',[
-                    'username' => $request->session()->get('username'),
-                ]);
+                $request->session()->put('auth', $user);
+                return redirect('/user');
             }
         }
         else

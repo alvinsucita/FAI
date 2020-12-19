@@ -69,3 +69,16 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/', 'AdminController@home');
     // Route::get('/', 'AdminController@login');
 });
+
+
+Route::get('/logout', 'UserController@logout');
+Route::group(['middleware' => 'login-user'], function() {
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'UserController@home');
+        Route::get('/pass_change', 'UserController@pass_change');
+        Route::post('/change_p', 'UserController@change_p');
+        Route::get('/edit_profile', 'UserController@profile');
+        Route::post('/edit_prof', 'UserController@edit_prof');
+        // Route::get('/', 'UserController@home');
+    });
+});
