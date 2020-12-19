@@ -84,7 +84,7 @@ class ControllerHalaman extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
         $user = usermodel::where('username', '=', $username)->first();
-        if($username == "888" && $password == "888")
+        if($username == "admin" && $password == "admin")
         {
             return view('components.admin');
         }
