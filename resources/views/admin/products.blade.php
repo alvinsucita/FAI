@@ -3,5 +3,5 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
-    Lorem Ipsum
+    Ini preview product
 @endsection
