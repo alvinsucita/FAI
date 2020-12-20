@@ -3,6 +3,7 @@
 /storage/*.key
 /vendor
 /.vscode
+/adminlte
 .env
 .env.backup
 .phpunit.result.cache
