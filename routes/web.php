@@ -59,12 +59,12 @@ Route::group(['prefix' => 'admin'], function() {
     });
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'AdminController@alluser');
-        Route::post('/action/{id}', 'AdminController@action');
+        Route::post('/{id}', 'AdminController@detailuser');
     });
     //jaga2 ada fitur tambahan
     Route::group(['prefix' => 'trans'], function() {
         Route::get('/', 'AdminController@alltrans');
-        Route::get('/detail/{id}', 'AdminController@detailtrans');
+        Route::get('/{id}', 'AdminController@detailtrans');
     });
     Route::get('/', 'AdminController@home');
     // Route::get('/', 'AdminController@login');

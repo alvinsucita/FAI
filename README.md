@@ -1,5 +1,5 @@
 PROYEK FAI SEMESTER GASAL 2020-2021: ONLINE SHOP (bukan marketplace)  
-Using AdminLTE v2 for base template
+Using AdminLTE v2 for base template, Laravel 7 for framework
 
 - 216011660 - Dana Mediana Wirawati  
 - 217116573 - Alvin Sucita  

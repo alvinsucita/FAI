@@ -12,7 +12,7 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="{{ url('/logout') }}" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="hidden-xs">Sign Out</span>
+                            <span class="hidden-xs">Sign Out</span>
                         </a>
                     </li>
                 </ul>
