@@ -1,6 +1,6 @@
 @extends('admin.template')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Products')
 
 @section('content')
     Ini preview product

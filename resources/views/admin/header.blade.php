@@ -21,48 +21,27 @@
     </header>
     <aside class="main-sidebar">
         <section class="sidebar">
-            <ul class="sidebar-menu" data-widget="tree">
+            <ul class="sidebar-menu">
                 <li class="header">MASTER</li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="{{ url('/admin') }}">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-users"></i>
-                            <span>Users</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </span>
+                        <a href="{{ url('/admin/user') }}">
+                            <i class="fa fa-users"></i> <span>Users</span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ url('/admin/user') }}"><i class="fa fa-circle-o"></i> All Users</a></li>
-                        </ul>
                     </li>
                     <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-tag"></i>
-                            <span>Products</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </span>
+                        <a href="{{ url('/admin/barang') }}">
+                            <i class="fa fa-tag"></i> <span>Products</span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ url('/admin/barang') }}"><i class="fa fa-circle-o"></i> All Products</a></li>
-                        </ul>
                     </li>
                     <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>Transaction</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </span>
+                        <a href="{{ url('/admin/trans') }}">
+                            <i class="fa fa-shopping-cart"></i> <span>Transactions</span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ url('/admin/trans') }}"><i class="fa fa-circle-o"></i> All Transactions</a></li>
-                        </ul>
                     </li>
                 </li>
             </ul>

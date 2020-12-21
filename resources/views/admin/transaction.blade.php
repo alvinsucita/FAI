@@ -1,6 +1,6 @@
 @extends('admin.template')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Transactions')
 
 @section('content')
     Ini preview history transaction

@@ -1,6 +1,6 @@
 @extends('admin.template')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Users')
 
 @section('content')
     Ini preview daftar user (+ rating?)

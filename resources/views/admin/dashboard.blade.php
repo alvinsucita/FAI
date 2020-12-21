@@ -1,6 +1,6 @@
 @extends('admin.template')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Dashboard')
 
 @section('content')
     Lorem Ipsum
