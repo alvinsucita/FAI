@@ -11,8 +11,8 @@
         <link rel="stylesheet" href="{{ url('/adminlte/bower_components/jvectormap/jquery-jvectormap.css') }}">
         <link rel="stylesheet" href="{{ url('/adminlte/dist/css/AdminLTE.min.css') }}">
         <link rel="stylesheet" href="{{ url('/adminlte/dist/css/skins/_all-skins.min.css') }}">
-        <link rel="stylesheet" href="{{ url('/adminlte/plugins/pace/pace.min.css')}}">
-
+        <link rel="stylesheet" href="{{ url('/adminlte/plugins/pace/pace.min.css') }}">
+        <link rel="stylesheet" href="{{ url('/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     </head>
     {{-- edit warna disini --}}
@@ -64,14 +64,9 @@
                     }
                 })
             })
-            $('#barang').DataTable({
-                'paging'      : true,
-                'lengthChange': false,
-                'searching'   : false,
-                'ordering'    : true,
-                'info'        : true,
-                'autoWidth'   : false
-            })
+            $('#barang').DataTable()
+            $('#users').DataTable()
+            $('#trans').DataTable()
         </script>
     </body>
 </html>
