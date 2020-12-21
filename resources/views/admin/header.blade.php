@@ -10,9 +10,10 @@
             </a>
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="{{ url('/logout') }}" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">Sign Out</span>
+                    <li>
+                        {{-- <a href="{{ url('/logout') }}"> --}}
+                        <a href="{{ url('/') }}">
+                            <span>Sign Out</span>
                         </a>
                     </li>
                 </ul>
