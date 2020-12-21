@@ -16,7 +16,10 @@
                 <h3 class="box-title">Your Cart</h3>
               </div>
               @if($cart=="")
-                Your shopping cart is empty
+              <div class="form-group">
+                <label class="col-sm-12 control-label">Your shopping cart is empty</label>
+              </div>
+              ____________________________________________________________________________________________________________________________________
               @else
                 Put your code here
               @endif
