@@ -48,7 +48,7 @@
                             <li class="user-body">
                                 <div class="row">
                                 <div class="col-xs-6 text-center">
-                                    <a href="/user/ history">History Pesanan</a>
+                                    <a href="/user/history">History Pesanan</a>
                                 </div>
                                 <!--div class="col-xs-4 text-center">
                                     <a href="#">Sales</a>
