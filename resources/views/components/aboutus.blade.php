@@ -4,7 +4,7 @@
 <div style="width:99%; height:500px; padding: 10px;">
     <div style="float: left; background-color: rgb(23, 35, 63); height: 500px; width: 50%;">
         <div style="color: white; font-size: 30px; margin-left: 40px; background-color: none;">
-            <h1>Innovation and Discovery</h1>
+            <h1>Innovation and Discovery 123</h1>
         </div>
         <p style="color: white;  margin-left: 40px; background-color: none;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptates nemo, ipsam ut hic voluptatum ullam tenetur vero libero necessitatibus eos, perspiciatis, amet laudantium numquam consequatur dolorem placeat repellat. Neque!</p>
         <br><br>

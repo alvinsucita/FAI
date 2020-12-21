@@ -1,4 +1,5 @@
 
+
 <head>
     <link rel="stylesheet" href="haha.css">
 </head>
@@ -10,9 +11,11 @@
         <a href="/Register">Register</a>
         <a href="/admin">Admin</a>
         <a href="/profiluser">Profil User</a>
-        <a href="/aboutus">About Us</a>
+        <a href="/aboutus">About us</a>
     </div>
     <div  style="height: 2px; background-color: yellow; border: none;">
 
     </div>
+ 
 </div>
+
