@@ -81,10 +81,24 @@
                         }
                     })
                 })
+                $('#modal-update').on('show.bs.modal', function(e) {
+                    var Id = $(e.relatedTarget).data('barang-id');
+                    var req = "{!! url('/admin/barang/') !!}/"
+                    var asdf = req.concat(Id)
+                    $.get(asdf, function( data ) {
+                        // alert( "Loaded: " + data.product_id );
+                        $(e.currentTarget).find('input[id="update_id"]').val(data.product_id);
+                        $(e.currentTarget).find('select[id="update_category"]').val(data.category_id);
+                        $(e.currentTarget).find('input[id="update_name"]').val(data.name);
+                        $(e.currentTarget).find('input[id="update_price"]').val(data.harga);
+                        $(e.currentTarget).find('input[id="update_stock"]').val(data.stok);
+                        $(e.currentTarget).find('button[id="id"]').attr("formaction", $(e.currentTarget).find('button[id="id"]').attr("formaction") + Id);
+                    });
+                });
                 $('#modal-delete').on('show.bs.modal', function(e) {
-                    var bookId = $(e.relatedTarget).data('barang-id');
-                    $(e.currentTarget).find('h4[class="modal-title"]').text($(e.currentTarget).find('h4[class="modal-title"]').text().substring(0, 7) + bookId);
-                    $(e.currentTarget).find('a[id="id"]').attr("href", $(e.currentTarget).find('a[id="id"]').attr("href") + bookId);
+                    var Id = $(e.relatedTarget).data('barang-id');
+                    $(e.currentTarget).find('h4[class="modal-title"]').text($(e.currentTarget).find('h4[class="modal-title"]').text().substring(0, 7) + Id);
+                    $(e.currentTarget).find('a[id="id"]').attr("href", $(e.currentTarget).find('a[id="id"]').attr("href") + Id);
                 });
 
                 $('#barang').DataTable()
