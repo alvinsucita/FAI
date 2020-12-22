@@ -80,7 +80,12 @@ Route::group(['middleware' => 'login-user'], function() {
         Route::get('/edit_profile', 'UserController@profile');
         Route::post('/edit_prof', 'UserController@edit_prof');
         Route::get('/cart', 'UserController@cart');
+        Route::get('/buy_item', 'UserController@buy_form');
         // Route::get('/', 'UserController@home');
         Route::get('/aboutus', 'UserController@aboutus');
+        Route::get('/dummy1', 'UserController@cart_dummy1');
+        Route::get('/dummy2', 'UserController@cart_dummy2');
+        Route::get('/dummy1plus', 'UserController@cart_dummy1plus');
+        Route::get('/cart_erase', 'UserController@cart_erase');
     });
 });

@@ -25,7 +25,11 @@
 
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <li><a href="/user/cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a href="/user/cart"><i class="fa fa-shopping-cart"></i>
+                            @if($count>0)
+                            <span class="label label-danger">{{count($count)-1}}</span>
+                            @endif
+                        </a></li>
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->

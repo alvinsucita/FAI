@@ -21,7 +21,43 @@
               </div>
               ____________________________________________________________________________________________________________________________________
               @else
-                Put your code here
+              <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                    @for($i=1;$i<count($cart);$i++)
+                        <tr>
+                            <td><div class="col-md-12">
+                                <div class="box box-success">
+                                  <div class="box-header">
+                                    <h3 class="box-title">{{$cart[$i]["nama"]}}</h3>
+
+                                    <!--div class="box-tools pull-right">
+                                      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div-->
+                                    <!-- /.box-tools -->
+                                  </div>
+                                  <!-- /.box-header -->
+                                  <div class="box-body">
+                                    <div class="col-sm-2">{{$cart[$i]["jenis"]}}</div>
+                                    <div class="col-sm-3">Rp {{$cart[$i]["harga"]}},-</div>
+                                    <div class="col-sm-7">x {{$cart[$i]["buy"]}}</div>
+                                  </div>
+                                  <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                              </div></td>
+                        </tr>
+                    @endfor
+                </table>
+              </div>
+              <div class="box-footer">
+                <div class="box-tools pull-right">
+                    Total: {{$coun}}
+                </div><br>
+                <form class="form-horizontal" action="/user/buy_item" method="get">
+                    @csrf
+                    <button type="submit" class="btn btn-primary pull-right">Buy</button>
+                </form>
+              </div>
               @endif
             </div>
             <!-- /.box -->
