@@ -26,23 +26,19 @@ class AdminController extends Controller
     function allbarang(){
         return view('admin.products');
     }
+    public function update(Request $request)
+    {
+        Cart::where('barang_id', '=', $request->nrp)->update(['nama' => $request->nama]);
+        return back();
+    }
+
+    public function delete($id)
+    {
+        Cart::where('barang_id', '=', $id)->delete();
+        return back();
+    }
     function alltrans(){
         return view('admin.transaction');
-    }
-    function alluser(){
-        return view('admin.users');
-    }
-    function detailuser($id){
-        $user = Users::where('id', '=', $id)->first();
-        echo '<script type="text/javascript">
-                alert(
-                "Nama: ' . $user->username .
-                '\nEmail: ' . $user->email .
-                '\nTTL: ' . $user->tanggallahir .
-                '\nAlamat: ' . $user->alamat .
-                '\nNo HP: ' . $user->nohp . '")
-                history.back();
-            </script>';
     }
     function detailtrans($id){
         $htrans = Htrans::where('htrans_id', '=', $id)->first();
@@ -57,6 +53,21 @@ class AdminController extends Controller
         $barang = Users::where('id', '=', $id)->first();
         echo '<script type="text/javascript">
                 alert("'.$stringbuilder.'")
+                history.back();
+            </script>';
+    }
+    function alluser(){
+        return view('admin.users');
+    }
+    function detailuser($id){
+        $user = Users::where('id', '=', $id)->first();
+        echo '<script type="text/javascript">
+                alert(
+                "Nama: ' . $user->username .
+                '\nEmail: ' . $user->email .
+                '\nTTL: ' . $user->tanggallahir .
+                '\nAlamat: ' . $user->alamat .
+                '\nNo HP: ' . $user->nohp . '")
                 history.back();
             </script>';
     }

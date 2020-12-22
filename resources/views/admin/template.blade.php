@@ -81,6 +81,11 @@
                         }
                     })
                 })
+                $('#modal-delete').on('show.bs.modal', function(e) {
+                    var bookId = $(e.relatedTarget).data('barang-id');
+                    $(e.currentTarget).find('h4[class="balue"]').text(bookId);
+                    $(e.currentTarget).find('a[id="id"]').attr("href", $(e.currentTarget).find('a[id="id"]').attr("href") + bookId);
+                });
                 $('#barang').DataTable()
                 $('#users').DataTable()
                 $('#trans').DataTable()

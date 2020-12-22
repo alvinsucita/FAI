@@ -43,10 +43,10 @@
                                 <td>{{ $index->rating }}</td>
                                 <td>{{ $index->unique_click }}</td>
                                 <td>
-                                    <a href='{{ url("/admin/update") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button></a>
+                                    <a href='{{ url("/admin/barang/update") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button></a>
                                 </td>
                                 <td>
-                                    <a href='{{ url("/admin/delete") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
+                                    <a data-toggle="modal" data-target="#modal-delete" data-barang-id="{{$index->barang_id}}"><button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
                                 </td>
                             </tr>
                         @empty
@@ -198,7 +198,28 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Insert</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- modal delete --}}
+<div class="modal modal-danger fade" id="modal-delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Delete </h4>
+                <h4 class="balue"></h4>
+            </div>
+            <div class="modal-body">
+                <p>Yakin masbor?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Gak</button>
+                <a href='{{ url("/admin/barang/delete") . "/$index->barang_id" }}' id="id"><button type="button" class="btn btn-primary">Ribet anjing</button></a>
             </div>
         </div>
     </div>

@@ -55,11 +55,11 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/', 'AdminController@allbarang');
         Route::post('/insert', 'AdminController@insert');
         Route::post('/update/{id}', 'AdminController@update');
-        Route::post('/delete/{id}', 'AdminController@delete');
+        Route::get('/delete/{id}', 'AdminController@delete');
     });
     Route::group(['prefix' => 'user'], function() {
-        Route::get('/{id}', 'AdminController@detailuser');
         Route::get('/', 'AdminController@alluser');
+        Route::get('/{id}', 'AdminController@detailuser');
     });
     //jaga2 ada fitur tambahan
     Route::group(['prefix' => 'trans'], function() {
