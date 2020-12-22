@@ -215,11 +215,11 @@
                 <h4 class="balue"></h4>
             </div>
             <div class="modal-body">
-                <p>Yakin masbor?</p>
+                <p>Are you sure?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Gak</button>
-                <a href='{{ url("/admin/barang/delete") . "/$index->barang_id" }}' id="id"><button type="button" class="btn btn-primary">Ribet anjing</button></a>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
+                <a href='{{ url("/admin/barang/delete") . "/$index->barang_id" }}' id="id"><button type="button" class="btn btn-primary">Yes</button></a>
             </div>
         </div>
     </div>
