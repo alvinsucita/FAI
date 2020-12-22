@@ -9,10 +9,19 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    function login(){
+        return view('admin.dashboard');
+    }
     function home(){
         return view('admin.dashboard');
     }
-    function login(){
-        return view('admin.dashboard');
+    function allbarang(){
+        return view('admin.products');
+    }
+    function alltrans(){
+        return view('admin.transaction');
+    }
+    function alluser(){
+        return view('admin.users');
     }
 }

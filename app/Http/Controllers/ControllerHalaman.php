@@ -84,17 +84,16 @@ class ControllerHalaman extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
         $user = usermodel::where('username', '=', $username)->first();
-        if($username == "888" && $password == "888")
+        if($username == "admin" && $password == "admin")
         {
             return view('components.admin');
         }
         else if($user != null){
             if($user->password == $password)
             {
-                $request->session()->put('username',$username);
-                return view('components.profile',[
-                    'username' => $request->session()->get('username'),
-                ]);
+                $request->session()->put('cart', "");
+                $request->session()->put('auth', $user);
+                return redirect('/user');
             }
         }
         else

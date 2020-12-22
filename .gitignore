@@ -2,13 +2,12 @@
 /public
 /storage/*.key
 /vendor
+/.vscode
+/adminlte
 .env
 .env.backup
 .phpunit.result.cache
-Homestead.json
 Homestead.yaml
 npm-debug.log
+proyekfai.sql
 yarn-error.log
-.vs/slnx.sqlite
-.vs/VSWorkspaceState.json
-.vs/PROYEK FAI/v16/.suo

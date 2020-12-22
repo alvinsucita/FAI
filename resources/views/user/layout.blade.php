@@ -7,10 +7,8 @@
     <title>Home</title>
 </head>
 <!--body-->
-    @include('includes.header')
-    <div style="background-color: white;">
+    @include('includes.header_char')
     @yield('content')
-    </div>
     @include('includes.footer')
 <!--/body-->
 </html>

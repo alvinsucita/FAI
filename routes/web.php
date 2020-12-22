@@ -59,13 +59,28 @@ Route::group(['prefix' => 'admin'], function() {
     });
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'AdminController@alluser');
-        Route::post('/action/{id}', 'AdminController@action');
+        Route::post('/{id}', 'AdminController@detailuser');
     });
     //jaga2 ada fitur tambahan
     Route::group(['prefix' => 'trans'], function() {
         Route::get('/', 'AdminController@alltrans');
-        Route::get('/detail/{id}', 'AdminController@detailtrans');
+        Route::get('/{id}', 'AdminController@detailtrans');
     });
     Route::get('/', 'AdminController@home');
     // Route::get('/', 'AdminController@login');
+});
+
+
+Route::get('/logout', 'UserController@logout');
+Route::group(['middleware' => 'login-user'], function() {
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'UserController@home');
+        Route::get('/pass_change', 'UserController@pass_change');
+        Route::post('/change_p', 'UserController@change_p');
+        Route::get('/edit_profile', 'UserController@profile');
+        Route::post('/edit_prof', 'UserController@edit_prof');
+        Route::get('/cart', 'UserController@cart');
+        // Route::get('/', 'UserController@home');
+        Route::get('/aboutus', 'UserController@aboutus');
+    });
 });
