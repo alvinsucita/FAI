@@ -33,12 +33,14 @@ Route::get('/Register', function () {
 // Route::get('/Admin', function () {
 //     return view('components.admin');
 // });
-Route::get('/product', function () {
-    return view('components.product');
-});
+// Route::get('/product', function () {
+//     return view('components.product');
+// });
+Route::get('/product', 'ProductController@index');
+Route::post('/product/filter', 'ProductController@filter');
 Route::get('/detailproduct', function () {
     return view('components.detailproduct');
-});
+}); 
 Route::get('/aboutus', function () {
     return view('components.aboutus');
 });

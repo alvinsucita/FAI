@@ -1,6 +1,6 @@
 @extends('home')
 @section('content')
-<div style="width: 400px;float: left;">
+<div style="width:   400px;float: left;">
     <br><br>
     <b>SEARCH</b>
     <br><br>
@@ -16,6 +16,13 @@
         <input type="checkbox" name="brand">Slides <br><br>
         <input type="checkbox" name="brand">Long Sleeves <br><br><br><br>
         
+        <b>BRANDS</b><br><br>
+        <input type="checkbox" name="brand">a <br><br>
+        <input type="checkbox" name="brand">Givenchy <br><br>
+        <input type="checkbox" name="brand">Gucci <br><br>
+        <input type="checkbox" name="brand">Kenzo <br><br>
+        <input type="checkbox" name="brand">Off White <br><br>
+        <input type="checkbox" name="brand">Versace <br><br><br><br>
         <b>PRICE RANGE</b><br><br>
         <input type="range" name="harga" class="slider">
         <p><b>Rp. 1,000</b><span style="margin: 0px 0px 0px 150px"><b>RP. 50,000,000</b></span></p><br>
