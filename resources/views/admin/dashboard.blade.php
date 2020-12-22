@@ -31,8 +31,12 @@
                     <tbody>
                         @forelse ($products as $index)
                             <tr>
-                                <td>{{ $index->nama }}</td>
-                                <td>{{ ucfirst($index->jenis) }}</td>
+                                <td>{{ $index->name }}</td>
+                                @foreach ($categories as $item)
+                                    @if ($item->category_id == $index->category_id)
+                                        <td>{{ ucfirst($item->name) }}</td>
+                                    @endif
+                                @endforeach
                                 <td>{{ $index->harga }}</td>
                                 @if ($index->stok == 0)
                                     <td style="color:red;">{{ $index->stok }}</td>
@@ -46,7 +50,7 @@
                                     <a href='{{ url("/admin/barang/update") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button></a>
                                 </td>
                                 <td>
-                                    <a data-toggle="modal" data-target="#modal-delete" data-barang-id="{{$index->barang_id}}"><button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
+                                    <a data-toggle="modal" data-target="#modal-delete" data-barang-id="{{$index->product_id}}"><button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
                                 </td>
                             </tr>
                         @empty

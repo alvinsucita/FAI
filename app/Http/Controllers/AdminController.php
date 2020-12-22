@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Model\Users;
+use App\Model\Category;
 use App\Model\Htrans;
 use App\Model\Dtrans;
 use App\Model\Cart; //barang kok modelnya namanya cart???
@@ -15,10 +16,12 @@ class AdminController extends Controller
     }
     function home(){
         $barangs = Cart::all();
+        $categories = Category::all();
         $users = Users::all();
         $trans = Htrans::all();
         return view('admin.dashboard', [
             'products' => $barangs,
+            'categories' => $categories,
             'users' => $users,
             'trans' => $trans
         ]);
