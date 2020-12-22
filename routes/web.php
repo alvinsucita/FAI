@@ -58,8 +58,8 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('/delete/{id}', 'AdminController@delete');
     });
     Route::group(['prefix' => 'user'], function() {
+        Route::get('/{id}', 'AdminController@detailuser');
         Route::get('/', 'AdminController@alluser');
-        Route::post('/{id}', 'AdminController@detailuser');
     });
     //jaga2 ada fitur tambahan
     Route::group(['prefix' => 'trans'], function() {

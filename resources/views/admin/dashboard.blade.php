@@ -9,7 +9,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Products</h3>
-                <a class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-default">
+                <a class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-insert">
                     <i class="fa fa-plus-square"></i>&nbsp;&nbspInsert
                 </a>
             </div>
@@ -19,7 +19,7 @@
                         <tr>
                             <th>Nama</th>
                             <th>Jenis</th>
-                            <th>Harga</th>
+                            <th>Harga (Rp)</th>
                             <th>Stok</th>
                             <th>Terjual</th>
                             <th>Rating</th>
@@ -43,10 +43,10 @@
                                 <td>{{ $index->rating }}</td>
                                 <td>{{ $index->unique_click }}</td>
                                 <td>
-                                    <a href='{{ url("/update") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button></a>
+                                    <a href='{{ url("/admin/update") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button></a>
                                 </td>
                                 <td>
-                                    <a href='{{ url("/delete") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
+                                    <a href='{{ url("/admin/delete") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
                                 </td>
                             </tr>
                         @empty
@@ -57,7 +57,7 @@
                         <tr>
                             <th>Nama</th>
                             <th>Jenis</th>
-                            <th>Harga</th>
+                            <th>Harga (Rp)</th>
                             <th>Stok</th>
                             <th>Terjual</th>
                             <th>Rating</th>
@@ -93,7 +93,7 @@
                                 <td>{{ $index->username }}</td>
                                 <td>{{ $index->email }}</td>
                                 <td>
-                                    <a href='{{ url("/users") . "/$index->username" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button></a>
+                                    <a href='{{ url("/admin/user") . "/$index->id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button></a>
                                 </td>
                             </tr>
                         @empty
@@ -140,7 +140,7 @@
                                     <td>WAITING</td>
                                 @endif
                                 <td>
-                                    <a href='{{ url("/trans") . "/$index->htrans_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button></a>
+                                    <a href='{{ url("/admin/trans") . "/$index->htrans_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button></a>
                                 </td>
                             </tr>
                         @empty
@@ -160,8 +160,8 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="modal-default">
+{{-- modal insert --}}
+<div class="modal fade" id="modal-insert">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -192,7 +192,7 @@
                     <label>Stok</label>
                     <input type="number" class="form-control" id="stok" >
                     <br>
-                    <label>Harga</label>
+                    <label>Harga (Rp)</label>
                     <input type="number" class="form-control" id="harga" step=100>
                 </div>
             </div>

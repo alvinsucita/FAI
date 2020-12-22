@@ -69,21 +69,22 @@
         <script src="{{ url('/adminlte/dist/js/pages/dashboard2.js') }}"></script>
         <script src="{{ url('/adminlte/dist/js/demo.js') }}"></script>
         <script type="text/javascript">
-            // To make Pace works on Ajax calls
-            $('.select2').select2()
-            $(document).ajaxStart(function () {
-                Pace.restart()
-            })
-            $('.ajax').click(function () {
-                $.ajax({
-                    url: '#', success: function (result) {
-                        $('.ajax-content').html('<hr>Ajax Request Completed !')
-                    }
+            $(document).ready(function() {
+                $('.select2').select2()
+                $(document).ajaxStart(function () {
+                    Pace.restart()
                 })
-            })
-            $('#barang').DataTable()
-            $('#users').DataTable()
-            $('#trans').DataTable()
+                $('.ajax').click(function () {
+                    $.ajax({
+                        url: '#', success: function (result) {
+                            $('.ajax-content').html('<hr>Ajax Request Completed !')
+                        }
+                    })
+                })
+                $('#barang').DataTable()
+                $('#users').DataTable()
+                $('#trans').DataTable()
+            });
         </script>
     </body>
 </html>
