@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Model\usermodel;
-use App\Model\penginapanmodel;
-use App\Model\vouchermodel;
+use App\Model\Users;
+use App\Model\Htrans;
+use App\Model\Cart; //barang kok modelnya namanya cart???
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,7 +13,14 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
     function home(){
-        return view('admin.dashboard');
+        $barang = Cart::all();
+        $users = Users::all();
+        $trans = Htrans::all();
+        return view('admin.dashboard', [
+            'products' => $barang,
+            'users' => $users,
+            'trans' => $trans
+        ]);
     }
     function allbarang(){
         return view('admin.products');

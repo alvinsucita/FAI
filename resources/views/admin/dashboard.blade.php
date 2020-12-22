@@ -23,39 +23,35 @@
                             <th>Stok</th>
                             <th>Terjual</th>
                             <th>Rating</th>
+                            <th>Visited (not unique)</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tasman</td>
-                            <td>Internet Explorer 5.2</td>
-                            <td>Mac OS 8-X</td>
-                            <td>1</td>
-                            <td>C</td>
-                            <td>C</td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tasmania</td>
-                            <td>Internet Explorer 5.3</td>
-                            <td>Mac OS 12</td>
-                            <td>2</td>
-                            <td>D</td>
-                            <td>B</td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
+                        @forelse ($products as $index)
+                            <tr>
+                                <td>{{ $index->nama }}</td>
+                                <td>{{ ucfirst($index->jenis) }}</td>
+                                <td>{{ $index->harga }}</td>
+                                @if ($index->stok == 0)
+                                    <td style="color:red;">{{ $index->stok }}</td>
+                                @else
+                                    <td>{{ $index->stok }}</td>
+                                @endif
+                                <td>{{ $index->sold }}</td>
+                                <td>{{ $index->rating }}</td>
+                                <td>{{ $index->unique_click }}</td>
+                                <td>
+                                    <a href='{{ url("/update") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button></a>
+                                </td>
+                                <td>
+                                    <a href='{{ url("/delete") . "/$index->barang_id" }}'><button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
+                                </td>
+                            </tr>
+                        @empty
+                        {{-- kalau kosong --}}
+                        @endforelse
                     </tbody>
                     <tfoot>
                         <tr>
@@ -65,6 +61,7 @@
                             <th>Stok</th>
                             <th>Terjual</th>
                             <th>Rating</th>
+                            <th>Visited (not unique)</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
@@ -91,20 +88,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tasman</td>
-                            <td>Internet Explorer 5.2</td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tasmania</td>
-                            <td>Internet Explorer 5.3</td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button>
-                            </td>
-                        </tr>
+                        @forelse ($users as $index)
+                            <tr>
+                                <td>{{ $index->username }}</td>
+                                <td>{{ $index->email }}</td>
+                                <td>
+                                    <a href='{{ url("/users") . "/$index->username" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button></a>
+                                </td>
+                            </tr>
+                        @empty
+                        {{-- kalau kosong --}}
+                        @endforelse
                     </tbody>
                     <tfoot>
                         <tr>
@@ -136,22 +130,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tasman</td>
-                            <td>Internet Explorer 5.2</td>
-                            <td>Mac OS 8-X</td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tasmania</td>
-                            <td>Internet Explorer 5.3</td>
-                            <td>Mac OS 12</td>
-                            <td>
-                                <button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button>
-                            </td>
-                        </tr>
+                        @forelse ($trans as $index)
+                            <tr>
+                                <td>{{ $index->htrans_id }}</td>
+                                <td>{{ $index->user_id }}</td>
+                                @if ($index->paid == "Y")
+                                    <td>DONE</td>
+                                @else
+                                    <td>WAITING</td>
+                                @endif
+                                <td>
+                                    <a href='{{ url("/trans") . "/$index->htrans_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button></a>
+                                </td>
+                            </tr>
+                        @empty
+                        {{-- kalau kosong --}}
+                        @endforelse
                     </tbody>
                     <tfoot>
                         <tr>
@@ -199,7 +193,7 @@
                     <input type="number" class="form-control" id="stok" >
                     <br>
                     <label>Harga</label>
-                    <input type="number" class="form-control" id="harga" >
+                    <input type="number" class="form-control" id="harga" step=100>
                 </div>
             </div>
             <div class="modal-footer">
