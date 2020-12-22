@@ -118,4 +118,44 @@ class UserController extends Controller
         }
         return redirect('/user');
     }
-} 
+
+    function cart_dummy1(Request $request){
+        $user = cart::find(1);
+        //dd($user);
+        $temp = ["count"=>1, 1=>[
+            "id"=>$user->barang_id,
+            "nama"=>$user->nama,
+            "jenis"=>$user->jenis,
+            "harga"=>$user->harga,
+            "buy"=>1,
+            "stok"=>$user->stok
+        ]];
+        $request->session()->put('cart', $temp);
+        return back();
+    }
+    function cart_dummy2(Request $request){
+        $user1 = $request->session()->get('cart');
+        $user1["count"] += 1;
+        $user = cart::find(1);
+        $temp = [
+            "id"=>$user->barang_id,
+            "nama"=>$user->nama,
+            "jenis"=>$user->jenis,
+            "harga"=>$user->harga,
+            "buy"=>1,
+            "stok"=>$user->stok
+        ];
+        array_push($user1, $temp);
+        $request->session()->put('cart', $user1);
+        return back();
+    }
+    function cart_dummy1plus(Request $request){
+        $user = $request->session()->get('cart');
+        $user[0]->stok += 1;
+        return back();
+    }
+    function cart_erase(Request $request){
+        $request->session()->put('cart', "");
+        return back();
+    }
+}
