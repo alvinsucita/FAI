@@ -27,7 +27,12 @@ class AdminController extends Controller
         ]);
     }
     public function allbarang(){
-        return view('admin.products');
+        $barangs = Cart::all();
+        $categories = Category::all();
+        return view('admin.products', [
+            'products' => $barangs,
+            'categories' => $categories
+        ]);
     }
     public function detail($id){
         $user = Cart::where('product_id', '=', $id)->first();
@@ -67,25 +72,33 @@ class AdminController extends Controller
     }
 
     public function alltrans(){
-        return view('admin.transaction');
+        $trans = Htrans::all();
+        $users = Users::all();
+        return view('admin.transaction', [
+            'trans' => $trans,
+            'users' => $users
+        ]);
     }
     public function detailtrans($id){
         $htrans = Htrans::where('htrans_id', '=', $id)->first();
         $dtrans = Dtrans::where('htrans_id', '=', $id)->get();
         $user = Users::where('id', '=', $htrans->user_id)->first();
-        $stringbuilder = "Untuk ".$user->username.": \n";
+        $stringbuilder = "Untuk ".$user->username.": ";
         foreach ($dtrans as $d) {
-            $barang = Cart::where('barang_id', '=', $d->barang_id)->first();
-            $stringbuilder = $stringbuilder . $d->qty . 'x ' . $barang->nama . ' (Rp '.($barang->harga*$d->qty).')\n';
+            $barang = Cart::where('product_id', '=', $d->barang_id)->first();
+            $stringbuilder = $stringbuilder . $d->qty . "x " . $barang->name . " (Rp ".($barang->harga*$d->qty).");";
         }
         echo '<script type="text/javascript">
-                alert("'.$stringbuilder.'")
+                alert("'.$stringbuilder.'");
                 history.back();
             </script>';
     }
 
     public function alluser(){
-        return view('admin.users');
+        $users = Users::all();
+        return view('admin.users', [
+            'users' => $users
+        ]);
     }
     public function detailuser($id){
         $user = Users::where('id', '=', $id)->first();

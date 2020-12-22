@@ -95,10 +95,11 @@
                         $(e.currentTarget).find('button[id="id"]').attr("formaction", $(e.currentTarget).find('button[id="id"]').attr("formaction") + Id);
                     });
                 });
+                var prefix = $(this).find('a[id="id"]').attr("href");
                 $('#modal-delete').on('show.bs.modal', function(e) {
                     var Id = $(e.relatedTarget).data('barang-id');
                     $(e.currentTarget).find('h4[class="modal-title"]').text($(e.currentTarget).find('h4[class="modal-title"]').text().substring(0, 7) + Id);
-                    $(e.currentTarget).find('a[id="id"]').attr("href", $(e.currentTarget).find('a[id="id"]').attr("href") + Id);
+                    $(e.currentTarget).find('a[id="id"]').attr("href", prefix.concat(Id));
                 });
 
                 $('#barang').DataTable()

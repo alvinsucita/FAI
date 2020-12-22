@@ -9,9 +9,6 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Products</h3>
-                <a class="btn btn-success pull-right" data-toggle="modal" data-target="#modal-insert">
-                    <i class="fa fa-plus-square"></i>&nbsp;&nbspInsert
-                </a>
             </div>
             <div class="box-body">
                 <table id="barang" class="table table-bordered table-hover">
@@ -24,8 +21,6 @@
                             <th>Sold</th>
                             <th>Rating</th>
                             <th>Visited (not unique)</th>
-                            <th>Update</th>
-                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,13 +41,6 @@
                                 <td id="sold">{{ $index->sold }}</td>
                                 <td id="rating">{{ $index->rating }}</td>
                                 <td id="clicked">{{ $index->unique_click }}</td>
-                                <td>
-                                    {{-- <a href='{{ url("/admin/barang/update") . "/$index->product_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button></a> --}}
-                                    <a data-toggle="modal" data-target="#modal-update" data-barang-id="{{$index->product_id}}"><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-edit"></i></button></a>
-                                </td>
-                                <td>
-                                    <a data-toggle="modal" data-target="#modal-delete" data-barang-id="{{$index->product_id}}"><button type="button" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash"></i></button></a>
-                                </td>
                             </tr>
                         @empty
                         {{-- kalau kosong --}}
@@ -67,8 +55,6 @@
                             <th>Sold</th>
                             <th>Rating</th>
                             <th>Visited (not unique)</th>
-                            <th>Update</th>
-                            <th>Delete</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -89,7 +75,6 @@
                         <tr>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -97,9 +82,6 @@
                             <tr>
                                 <td>{{ $index->username }}</td>
                                 <td>{{ $index->email }}</td>
-                                <td>
-                                    <a href='{{ url("/admin/user") . "/$index->id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button></a>
-                                </td>
                             </tr>
                         @empty
                         {{-- kalau kosong --}}
@@ -109,7 +91,6 @@
                         <tr>
                             <th>Username</th>
                             <th>Email</th>
-                            <th>Detail</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -131,7 +112,6 @@
                             <th>Transaction ID</th>
                             <th>User ID</th>
                             <th>Status</th>
-                            <th>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -144,9 +124,6 @@
                                 @else
                                     <td>WAITING</td>
                                 @endif
-                                <td>
-                                    <a href='{{ url("/admin/trans") . "/$index->htrans_id" }}'><button type="button" class="btn btn-block btn-primary btn-xs"><i class="fa fa-external-link"></i></button></a>
-                                </td>
                             </tr>
                         @empty
                         {{-- kalau kosong --}}
@@ -157,7 +134,6 @@
                             <th>Transaction ID</th>
                             <th>User ID</th>
                             <th>Status</th>
-                            <th>Detail</th>
                         </tr>
                     </tfoot>
                 </table>
