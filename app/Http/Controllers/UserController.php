@@ -34,7 +34,7 @@ class UserController extends Controller
         for($i=1;$i<count($cart);$i++){
             $coun+=$cart[$i]["harga"];
         }
-        return view('user.cart', ['user' => $user, 'cart' => $cart, 'count' => $cart, 'coun' => $coun]);
+        return view('user.payment', ['user' => $user, 'cart' => $cart, 'count' => $cart, 'coun' => $coun]);
     }
     function buy_form(Request $request){
         $user = $request->session()->get('auth');
