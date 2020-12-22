@@ -29,15 +29,25 @@ class AdminController extends Controller
     function allbarang(){
         return view('admin.products');
     }
+    function detail($id){
+        $user = Cart::where('product_id', '=', $id)->first();
+        return $user;
+    }
     public function update(Request $request)
     {
-        Cart::where('barang_id', '=', $request->nrp)->update(['nama' => $request->nama]);
+        Cart::where('product_id', '=', $request->update_id)->update([
+            'name' => $request->update_name,
+            'category_id' => $request->update_category,
+            'harga' => $request->update_price,
+            'stok' => $request->update_stock,
+        ]);
         return back();
+        // return back();
     }
 
     public function delete($id)
     {
-        Cart::where('barang_id', '=', $id)->delete();
+        Cart::where('product_id', '=', $id)->delete();
         return back();
     }
     function alltrans(){

@@ -40,7 +40,7 @@ Route::get('/product', 'ProductController@index');
 Route::post('/product/filter', 'ProductController@filter');
 Route::get('/detailproduct', function () {
     return view('components.detailproduct');
-}); 
+});
 Route::get('/aboutus', function () {
     return view('components.aboutus');
 });
@@ -55,6 +55,7 @@ Route::post('/delete','ControllerHalaman@deleteSession');
 Route::group(['prefix' => 'admin'], function() {
     Route::group(['prefix' => 'barang'], function() {
         Route::get('/', 'AdminController@allbarang');
+        Route::get('/{id}', 'AdminController@detail');
         Route::post('/insert', 'AdminController@insert');
         Route::post('/update/{id}', 'AdminController@update');
         Route::get('/delete/{id}', 'AdminController@delete');
