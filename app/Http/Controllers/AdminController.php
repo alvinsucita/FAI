@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    function login(){
+    public function login(){
         return view('admin.dashboard');
     }
-    function home(){
+    public function home(){
         $barangs = Cart::all();
         $categories = Category::all();
         $users = Users::all();
@@ -26,12 +26,28 @@ class AdminController extends Controller
             'trans' => $trans
         ]);
     }
-    function allbarang(){
+    public function allbarang(){
         return view('admin.products');
     }
-    function detail($id){
+    public function detail($id){
         $user = Cart::where('product_id', '=', $id)->first();
         return $user;
+    }
+    public function insert(Request $request)
+    {
+        $newuser = new Cart();
+        $newuser->name = $request->name;
+        $newuser->category_id = $request->category;
+        $newuser->harga = $request->price;
+        $newuser->stok = $request->stock;
+        $newuser->sold = 0;
+        $newuser->rating = 5;
+        $newuser->unique_click = 0;
+        $file = $request->file('file');
+        $newuser->image = $file->getClientOriginalName(); //ini upload file beneran apa pick file di public?
+        $newuser->save();
+        return back();
+        // return back();
     }
     public function update(Request $request)
     {
@@ -44,35 +60,34 @@ class AdminController extends Controller
         return back();
         // return back();
     }
-
     public function delete($id)
     {
         Cart::where('product_id', '=', $id)->delete();
         return back();
     }
-    function alltrans(){
+
+    public function alltrans(){
         return view('admin.transaction');
     }
-    function detailtrans($id){
+    public function detailtrans($id){
         $htrans = Htrans::where('htrans_id', '=', $id)->first();
         $dtrans = Dtrans::where('htrans_id', '=', $id)->get();
         $user = Users::where('id', '=', $htrans->user_id)->first();
-        // $stringbuilder = $user->username;
-        $stringbuilder = "";
+        $stringbuilder = "Untuk ".$user->username.": \n";
         foreach ($dtrans as $d) {
             $barang = Cart::where('barang_id', '=', $d->barang_id)->first();
             $stringbuilder = $stringbuilder . $d->qty . 'x ' . $barang->nama . ' (Rp '.($barang->harga*$d->qty).')\n';
         }
-        $barang = Users::where('id', '=', $id)->first();
         echo '<script type="text/javascript">
                 alert("'.$stringbuilder.'")
                 history.back();
             </script>';
     }
-    function alluser(){
+
+    public function alluser(){
         return view('admin.users');
     }
-    function detailuser($id){
+    public function detailuser($id){
         $user = Users::where('id', '=', $id)->first();
         echo '<script type="text/javascript">
                 alert(

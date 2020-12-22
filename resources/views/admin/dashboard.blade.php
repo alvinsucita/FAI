@@ -178,8 +178,10 @@
             <div class="modal-body">
                 {{-- <p>One fine body&hellip;</p> --}}
                 <div class="form-group">
+                    <form method="post" enctype="multipart/form-data">
+                        @csrf
                     <label>Category</label>
-                    <select class="form-control select2" multiple="multiple" id="category"
+                    <select class="form-control select2" multiple="multiple" id="category" name="category"
                               style="width: 100%;">
                         <option></option>
                         <option value=1>T-Shirts</option>
@@ -192,19 +194,23 @@
                     <br>
                     <br>
                     <label>Name</label>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" class="form-control" id="name" name="name">
                     <br>
                     <label>Price (IDR)</label>
-                    <input type="number" class="form-control" id="price" step=100>
+                    <input type="number" class="form-control" id="price" name="price" step=100 min=0>
                     <br>
                     <label>Stock</label>
-                    <input type="number" class="form-control" id="stock">
+                    <input type="number" class="form-control" id="stock" name="stock">
+                    <br>
+                    <label>File</label>
+                    <input type="file" name="file">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Insert</button>
+                <button type="submit" class="btn btn-primary" id="id" formaction="{{ url("/admin/barang/insert") }}">Insert</button></a>
             </div>
+        </form>
         </div>
     </div>
 </div>
@@ -242,7 +248,7 @@
                         <input type="text" class="form-control" name="update_name" id="update_name">
                         <br>
                         <label>Price (IDR)</label>
-                        <input type="number" class="form-control" name="update_price" id="update_price" step=100>
+                        <input type="number" class="form-control" name="update_price" id="update_price" step=100 min=0>
                         <br>
                         <label>Stock</label>
                         <input type="number" class="form-control" name="update_stock" id="update_stock">
