@@ -40,7 +40,7 @@ Route::get('/product', 'ProductController@index');
 Route::post('/product/filter', 'ProductController@filter');
 Route::get('/detailproduct', function () {
     return view('components.detailproduct');
-}); 
+});
 Route::get('/aboutus', function () {
     return view('components.aboutus');
 });
@@ -87,7 +87,10 @@ Route::group(['middleware' => 'login-user'], function() {
         Route::get('/aboutus', 'UserController@aboutus');
         Route::get('/dummy1', 'UserController@cart_dummy1');
         Route::get('/dummy2', 'UserController@cart_dummy2');
+        Route::get('/dummy3', 'UserController@cart_dummy3');
         Route::get('/dummy1plus', 'UserController@cart_dummy1plus');
+        Route::get('/dummy1minus', 'UserController@cart_dummy1minus');
         Route::get('/cart_erase', 'UserController@cart_erase');
+        Route::get('/cart_erase_id2', 'UserController@cart_erasespecific2');
     });
 });

@@ -136,7 +136,23 @@ class UserController extends Controller
     function cart_dummy2(Request $request){
         $user1 = $request->session()->get('cart');
         $user1["count"] += 1;
-        $user = cart::find(1);
+        $user = cart::find(2);
+        $temp = [
+            "id"=>$user->barang_id,
+            "nama"=>$user->nama,
+            "jenis"=>$user->jenis,
+            "harga"=>$user->harga,
+            "buy"=>1,
+            "stok"=>$user->stok
+        ];
+        array_push($user1, $temp);
+        $request->session()->put('cart', $user1);
+        return back();
+    }
+    function cart_dummy3(Request $request){
+        $user1 = $request->session()->get('cart');
+        $user1["count"] += 1;
+        $user = cart::find(3);
         $temp = [
             "id"=>$user->barang_id,
             "nama"=>$user->nama,
@@ -154,8 +170,33 @@ class UserController extends Controller
         $user[0]->stok += 1;
         return back();
     }
+    function cart_dummy1minus(Request $request){
+        $user = $request->session()->get('cart');
+        $user[0]->stok -= 1;
+        return back();
+    }
     function cart_erase(Request $request){
         $request->session()->put('cart', "");
+        return back();
+    }
+    function cart_erasespecific2(Request $request){
+        $user1 = $request->session()->get('cart');
+        $user1["count"] -= 1;
+        $id_delete=2;
+        $tru=false;
+        for($i=1;$i<count($user1);$i++){
+            if($user1[$i]['barang_id']==$id_delete && $i+1<count($user1) && $tru==false){
+                $user1[$i]=$user1[$i+1];
+                $tru=true;
+            }
+            else if($tru==true && $i<count($user1)-1){
+                $user1[$i]=$user1[$i+1];
+            }
+            else if($tru==true){
+                $user1[$i]=null;
+            }
+        }
+        $request->session()->put('cart', $user1);
         return back();
     }
 }

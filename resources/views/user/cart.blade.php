@@ -28,6 +28,7 @@
                             <td><div class="col-md-12">
                                 <div class="box box-success">
                                   <div class="box-header">
+                                      {{dd($cart)}}
                                     <h3 class="box-title">{{$cart[$i]["nama"]}}</h3>
 
                                     <!--div class="box-tools pull-right">
