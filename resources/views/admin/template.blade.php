@@ -13,7 +13,22 @@
         <link rel="stylesheet" href="{{ url('/adminlte/dist/css/skins/_all-skins.min.css') }}">
         <link rel="stylesheet" href="{{ url('/adminlte/plugins/pace/pace.min.css') }}">
         <link rel="stylesheet" href="{{ url('/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url('/adminlte/bower_components/select2/dist/css/select2.min.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        <style>
+            .example-modal .modal {
+              position: relative;
+              top: auto;
+              bottom: auto;
+              right: auto;
+              left: auto;
+              display: block;
+              z-index: 1;
+            }
+            .example-modal .modal {
+              background: transparent !important;
+            }
+          </style>
     </head>
     {{-- edit warna disini --}}
     <body class="hold-transition skin-purple sidebar-mini sidebar-collapse">
@@ -44,6 +59,7 @@
         <script src="{{ url('/adminlte/bower_components/PACE/pace.min.js') }}"></script>
         <script src="{{ url('/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ url('/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+        <script src="{{ url('/adminlte/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
         <script src="{{ url('/adminlte/dist/js/adminlte.min.js') }}"></script>
         <script src="{{ url('/adminlte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
         <script src="{{ url('/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
@@ -53,20 +69,28 @@
         <script src="{{ url('/adminlte/dist/js/pages/dashboard2.js') }}"></script>
         <script src="{{ url('/adminlte/dist/js/demo.js') }}"></script>
         <script type="text/javascript">
-            // To make Pace works on Ajax calls
-            $(document).ajaxStart(function () {
-                Pace.restart()
-            })
-            $('.ajax').click(function () {
-                $.ajax({
-                    url: '#', success: function (result) {
-                        $('.ajax-content').html('<hr>Ajax Request Completed !')
-                    }
+            $(document).ready(function() {
+                $('.select2').select2()
+                $(document).ajaxStart(function () {
+                    Pace.restart()
                 })
-            })
-            $('#barang').DataTable()
-            $('#users').DataTable()
-            $('#trans').DataTable()
+                $('.ajax').click(function () {
+                    $.ajax({
+                        url: '#', success: function (result) {
+                            $('.ajax-content').html('<hr>Ajax Request Completed !')
+                        }
+                    })
+                })
+                $('#modal-delete').on('show.bs.modal', function(e) {
+                    var bookId = $(e.relatedTarget).data('barang-id');
+                    $(e.currentTarget).find('h4[class="modal-title"]').text($(e.currentTarget).find('h4[class="modal-title"]').text().substring(0, 7) + bookId);
+                    $(e.currentTarget).find('a[id="id"]').attr("href", $(e.currentTarget).find('a[id="id"]').attr("href") + bookId);
+                });
+
+                $('#barang').DataTable()
+                $('#users').DataTable()
+                $('#trans').DataTable()
+            });
         </script>
     </body>
 </html>
