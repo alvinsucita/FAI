@@ -84,7 +84,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Insert (belum jadi)</h4>
+                <h4 class="modal-title">Insert</h4>
             </div>
             <div class="modal-body">
                 {{-- <p>One fine body&hellip;</p> --}}
@@ -111,7 +111,7 @@
                     <input type="number" class="form-control" id="price" name="price" step=100 min=0>
                     <br>
                     <label>Stock</label>
-                    <input type="number" class="form-control" id="stock" name="stock">
+                    <input type="number" class="form-control" id="stock" name="stock" min=0>
                     <br>
                     <label>File</label>
                     <input type="file" name="file">
@@ -133,14 +133,15 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Update (belum jadi)</h4>
+                <h4 class="modal-title">Update</h4>
             </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <form method="post">
                             @csrf
                         <label>Product ID</label>
-                        <input type="text" class="form-control" name="update_id" id="update_id">
+                        <input type="text" class="form-control" name="decoy" id="decoy" disabled>
+                        <input type="hidden" name="update_id" id="update_id">
                         <br>
                         <label>Category</label>
                         <select class="form-control select2" multiple="multiple" name="update_category" id="update_category"
@@ -162,7 +163,7 @@
                         <input type="number" class="form-control" name="update_price" id="update_price" step=100 min=0>
                         <br>
                         <label>Stock</label>
-                        <input type="number" class="form-control" name="update_stock" id="update_stock">
+                        <input type="number" class="form-control" name="update_stock" id="update_stock" min=0>
                     </div>
                 </div>
                 <div class="modal-footer">

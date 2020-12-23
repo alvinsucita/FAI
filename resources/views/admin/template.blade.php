@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>@yield('title')</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <link rel="stylesheet" href="{{ url('/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url('/adminlte/bower_components/font-awesome/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ url('/adminlte/bower_components/Ionicons/css/ionicons.min.css') }}">
@@ -31,7 +32,7 @@
           </style>
     </head>
     {{-- edit warna disini --}}
-    <body class="hold-transition skin-purple sidebar-mini sidebar-collapse">
+    <body class="hold-transition skin-purple fixed sidebar-mini sidebar-collapse">
         <div class="wrapper">
             @include('admin.header')
             <div class="content-wrapper">
@@ -74,19 +75,13 @@
                 $(document).ajaxStart(function () {
                     Pace.restart()
                 })
-                $('.ajax').click(function () {
-                    $.ajax({
-                        url: '#', success: function (result) {
-                            $('.ajax-content').html('<hr>Ajax Request Completed !')
-                        }
-                    })
-                })
                 $('#modal-update').on('show.bs.modal', function(e) {
                     var Id = $(e.relatedTarget).data('barang-id');
                     var req = "{!! url('/admin/barang/') !!}/"
                     var asdf = req.concat(Id)
                     $.get(asdf, function( data ) {
                         // alert( "Loaded: " + data.product_id );
+                        $(e.currentTarget).find('input[id="decoy"]').val(data.product_id);
                         $(e.currentTarget).find('input[id="update_id"]').val(data.product_id);
                         $(e.currentTarget).find('select[id="update_category"]').val(data.category_id);
                         $(e.currentTarget).find('input[id="update_name"]').val(data.name);
@@ -95,17 +90,25 @@
                         $(e.currentTarget).find('button[id="id"]').attr("formaction", $(e.currentTarget).find('button[id="id"]').attr("formaction") + Id);
                     });
                 });
+
                 var prefix = $(this).find('a[id="id"]').attr("href");
                 $('#modal-delete').on('show.bs.modal', function(e) {
                     var Id = $(e.relatedTarget).data('barang-id');
                     $(e.currentTarget).find('h4[class="modal-title"]').text($(e.currentTarget).find('h4[class="modal-title"]').text().substring(0, 7) + Id);
                     $(e.currentTarget).find('a[id="id"]').attr("href", prefix.concat(Id));
                 });
-
+                //tampilan table
                 $('#barang').DataTable()
                 $('#users').DataTable()
                 $('#trans').DataTable()
             });
+            function logout(){
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.post("{!! url('/admin/logout/') !!}", {_token: CSRF_TOKEN}, function(data) {
+                    //asdf
+                    location.reload();
+                });
+            }
         </script>
     </body>
 </html>

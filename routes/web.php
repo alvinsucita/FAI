@@ -53,6 +53,11 @@ Route::get('/topup', 'ControllerHalaman@TopUp');
 Route::post('/delete','ControllerHalaman@deleteSession');
 
 Route::group(['prefix' => 'admin'], function() {
+    Route::get('/', 'AdminController@home');
+    Route::get('/login', 'AdminController@log');
+    Route::post('/login', 'AdminController@login');
+    Route::post('/logout', 'AdminController@logout');
+
     Route::group(['prefix' => 'barang'], function() {
         Route::get('/', 'AdminController@allbarang');
         Route::get('/{id}', 'AdminController@detail');
@@ -60,19 +65,17 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('/update/{id}', 'AdminController@update');
         Route::get('/delete/{id}', 'AdminController@delete');
     });
+
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'AdminController@alluser');
         Route::get('/{id}', 'AdminController@detailuser');
     });
-    //jaga2 ada fitur tambahan
+
     Route::group(['prefix' => 'trans'], function() {
         Route::get('/', 'AdminController@alltrans');
         Route::get('/{id}', 'AdminController@detailtrans');
     });
-    Route::get('/', 'AdminController@home');
-    // Route::get('/', 'AdminController@login');
 });
-
 
 Route::get('/logout', 'UserController@logout');
 Route::group(['middleware' => 'login-user'], function() {
