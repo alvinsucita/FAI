@@ -176,24 +176,25 @@ class UserController extends Controller
     }
     function buy_item(Request $request){
         $user = $request->session()->get('cart');
+        $user1 = $request->session()->get('auth');
         $data = new Htrans();
-        $data->user_id ="1";
-        $data->paid = 'N';
+        $data->user_id = $user1->id;
+        $data->paid = 'Y';
         $data->save();
-        $tru=false;
+        // dd($data->htrans_id);
         for($i=1;$i<count($user);$i++){
-            if($user[$i]['id']==$id && $i+1<count($user) && $tru==false){
-                $user[$i]=$user[$i+1];
-                $tru=true;
-            }
-            else if($tru==true && $i<count($user)-1){
-                $user[$i]=$user[$i+1];
-            }
-            else if($tru==true){
-                unset($user[$i]);
-            }
+            $data1 = new Dtrans();
+            $data1->htrans_id = $data->htrans_id;
+            $data1->barang_id = $user[$i]["id"];
+            $data1->qty = $user[$i]["buy"];
+            $data1->rating = -1;
+            $data1->save();
+            $user2 = cart::find($user[$i]["id"]);
+            $user2->stok -= $user[$i]["buy"];
+            $user2->sold += $user[$i]["buy"];
+            $user2->save();
         }
-        $request->session()->put('cart', $user);
+        $request->session()->put('cart', "");
         return back();
     }
 
