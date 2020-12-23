@@ -28,6 +28,7 @@
         <b>PRICE RANGE</b><br><br>
         <select name="price" id="price" class="form-control">
             <option value="">-- Pilih --</option>
+            <option value="popularity">Populer</option>
             <option value="low">Terendah</option>
             <option value="high">Tertinggi</option>
         </select>

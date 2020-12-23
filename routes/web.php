@@ -36,8 +36,15 @@ Route::get('/Register', function () {
 // Route::get('/product', function () {
 //     return view('components.product');
 // });
+
+// Product Section
 Route::get('/product', 'ProductController@index');
 Route::post('/product/filter', 'ProductController@filter');
+Route::get('/product/detail/{productId}', 'ProductController@detail');
+Route::get('/produk/detail/size', 'ProductController@size');
+// End Section
+
+
 Route::get('/detailproduct', function () {
     return view('components.detailproduct');
 });

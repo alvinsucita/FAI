@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\ProductImages;
 use App\CategoryProduct;
 
 class ProductController extends Controller
@@ -17,10 +18,11 @@ class ProductController extends Controller
     		$where = [];
 
     		// Set Datas
-			$datas = Product::getFullData($where)->paginate($this->limitPage);
+    		$datas = Product::getFullData($where)->paginate($this->limitPage);
     		
     		// Get Catgeory
     		$categories = CategoryProduct::all();
+
     		if($request->ajax()) {
     			return view('product.load-data', ['datas' => $datas]);
     		}
@@ -28,12 +30,50 @@ class ProductController extends Controller
     		return view('product.index', ['datas' => $datas, 'categories' => $categories]);
     	}
     	catch(\Exception $e) {
-			// return redirect()->back()->with('message', $e->getMessage());
-			die($e->getMessage());
+    		// return redirect()->back()->with('message', $e->getMessage());
+    		die($e->getMessage());
+    	}
+	}
+	
+	public function size()
+	{
+		return view('product.size-chart');
+	}
+
+    public function detail($productId)
+    {
+    	try {
+    		if(empty($productId)) {
+    			return redirect()->back()->with('message', 'Product not specified');
+    		}
+
+    		$id = trim($productId);
+
+    		// Get detail
+    		$product = Product::where([
+    			['product_id', '=', $id]
+    		]);
+
+    		if(count($product->get()) < 1) {
+    			return redirect('/product');
+    		}
+
+    		$product = $product->first();
+
+    		// Get more images from product
+    		$productImages = ProductImages::where([
+    			['product_id', '=', $id]
+    		])->get();
+
+    		return view('product.detail', compact('product','productImages'));
+    	}
+    	catch(\Exception $e) {
+    		die($e->getMessage());
     	}
     }
 
-    public function filter(Request $request) {
+    public function filter(Request $request) 
+    {
     	try {
     		$where = [];
     		$whereIn = [];
@@ -44,9 +84,8 @@ class ProductController extends Controller
     		if(!empty($request['search'])) {
     			$search = filter_var( strip_tags(trim($request['search'])), FILTER_SANITIZE_STRING );
     			$where[] = ['product.name', 'LIKE', '%'.$search.'%'];
-
-    			$datas = Product::getFullData($where);
     		}
+    		$datas = Product::getFullData($where);
 
     		// if user check category
     		if(!empty($request['categories'])) {
@@ -59,8 +98,10 @@ class ProductController extends Controller
 
     		// If User filter price
     		if(!empty($request['price'])) {
+
+    			$orderColumn = ($request['price'] == 'low' || $request['price'] == 'high') ? 'product.harga' : 'product.unique_click';
     			$price = $request['price'] == 'low' ? 'asc' : 'desc';
-    			$datas = $datas->orderBy('product.harga', $price)->get();
+    			$datas = $datas->orderBy($orderColumn, $price)->get();
     		}
     		else {
     			$datas = $datas->paginate($this->limitPage);
@@ -75,5 +116,3 @@ class ProductController extends Controller
     	}
     }
 }
-
-
