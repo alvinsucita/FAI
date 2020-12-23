@@ -53,8 +53,17 @@ class UserController extends Controller
         }
         return view('user.cart', ['user' => $user, 'cart' => $cart, 'count' => $cart, 'coun' => $coun]);
     }
-    function history(){
-        return view('user.history');
+    function history(Request $request){
+        $user = $request->session()->get('auth');
+        $cart = $request->session()->get('cart');
+        $htrans = Htrans::where('user_id', '=', $user->id)->get();
+        return view('user.history', ['user' => $user, 'cart' => $cart, 'htrans' => $htrans]);
+    }
+    function historydetail(Request $request){
+        $user = $request->session()->get('auth');
+        $cart = $request->session()->get('cart');
+        $htrans = Htrans::where('user_id', '=', $user->id)->get();
+        return view('user.history_detail', ['user' => $user, 'cart' => $cart, 'htrans' => $htrans]);
     }
     function pass_change(Request $request){
         $user = $request->session()->get('auth');

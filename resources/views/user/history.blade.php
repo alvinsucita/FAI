@@ -5,7 +5,7 @@
         <section class="content-header">
         <h1>
             Hello,{{$user->username}}
-            <small>Cart</small>
+            <small>History</small>
         </h1>
         </section>
         <!-- right column -->
@@ -13,17 +13,18 @@
             <!-- Horizontal Form -->
             <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Your Cart</h3>
+                <h3 class="box-title">Your History</h3>
               </div>
-              @if($cart=="")
+
+              @if($htrans==null)
               <div class="form-group">
-                <label class="col-sm-12 control-label">Your shopping cart is empty</label>
+                <label class="col-sm-12 control-label">Your history is empty</label>
               </div>
               ____________________________________________________________________________________________________________________________________
               @else
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
-                    @for($i=1;$i<count($cart);$i++)
+                    @for($i=1;$i<$htrans;$i++)
                         <tr>
                             <td><div class="col-md-12">
                                 <div class="box box-success">
@@ -68,7 +69,7 @@
               </div>
               <div class="box-footer">
                 <div class="box-tools pull-right">
-                    Total: Rp {{$coun}},-
+
                 </div><br>
                 <form class="form-horizontal" action="/user/buy_item" method="post">
                     @csrf
