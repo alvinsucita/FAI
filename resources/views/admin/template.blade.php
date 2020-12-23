@@ -87,7 +87,7 @@
                         $(e.currentTarget).find('input[id="update_name"]').val(data.name);
                         $(e.currentTarget).find('input[id="update_price"]').val(data.harga);
                         $(e.currentTarget).find('input[id="update_stock"]').val(data.stok);
-                        $(e.currentTarget).find('button[id="idd"]').attr("formaction", $(e.currentTarget).find('button[id="id"]').attr("formaction") + Id);
+                        $(e.currentTarget).find('button[id="idd"]').attr("formaction", $(e.currentTarget).find('button[id="idd"]').attr("formaction") + "/" + data.product_id);
                     });
                 });
 
