@@ -26,8 +26,10 @@
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li><a href="/user/cart"><i class="fa fa-shopping-cart"></i>
-                            @if($count>0)
-                            <span class="label label-danger">{{count($count)-1}}</span>
+                            @if($cart!="")
+                                @if($count>0)
+                                <span class="label label-danger">{{count($count)-1}}</span>
+                                @endif
                             @endif
                         </a></li>
                         <!-- User Account Menu -->

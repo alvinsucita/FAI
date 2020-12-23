@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Dtrans extends Model
 {
     protected $table = 'dtrans';
-    protected $primaryKey = null;
-    public $incrementing = false;
+    protected $primaryKey = 'dtrans_id';
+    public $incrementing = true;
     public $timestamps = false;
-    protected $guarded = [];
+    protected $guarded = ['dtrans_id'];
 }
