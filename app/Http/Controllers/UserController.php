@@ -59,6 +59,23 @@ class UserController extends Controller
         $htrans = Htrans::where('user_id', '=', $user->id)->get();
         return view('user.history', ['user' => $user, 'cart' => $cart, 'htrans' => $htrans]);
     }
+    function status(Request $request){
+        $id = $request->id;
+        $user = $request->session()->get('auth');
+        $cart = $request->session()->get('cart');
+        $dtrans = Dtrans::where('htrans_id', '=', $id)->get();
+        $barang = cart::all();
+        return view('user.status', ['user' => $user, 'cart' => $cart, 'dtrans' => $dtrans, 'barang' => $barang]);
+    }
+    function diterima(Request $request){
+        $id = $request->id;
+        $user = $request->session()->get('auth');
+        $cart = $request->session()->get('cart');
+        $htrans = Htrans::find($id);
+        $htrans->paid="Y";
+        $htrans->save();
+        return redirect('/user');
+    }
     function historydetail(Request $request){
         $id = $request->id;
         $user = $request->session()->get('auth');
