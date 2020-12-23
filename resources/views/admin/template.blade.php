@@ -87,15 +87,16 @@
                         $(e.currentTarget).find('input[id="update_name"]').val(data.name);
                         $(e.currentTarget).find('input[id="update_price"]').val(data.harga);
                         $(e.currentTarget).find('input[id="update_stock"]').val(data.stok);
-                        $(e.currentTarget).find('button[id="id"]').attr("formaction", $(e.currentTarget).find('button[id="id"]').attr("formaction") + Id);
+                        $(e.currentTarget).find('button[id="idd"]').attr("formaction", $(e.currentTarget).find('button[id="idd"]').attr("formaction") + "/" + data.product_id);
                     });
                 });
 
                 var prefix = $(this).find('a[id="id"]').attr("href");
                 $('#modal-delete').on('show.bs.modal', function(e) {
                     var Id = $(e.relatedTarget).data('barang-id');
+                    alert(Id);
                     $(e.currentTarget).find('h4[class="modal-title"]').text($(e.currentTarget).find('h4[class="modal-title"]').text().substring(0, 7) + Id);
-                    $(e.currentTarget).find('a[id="id"]').attr("href", prefix.concat(Id));
+                    $(e.currentTarget).find('a[id="id"]').attr("href", prefix);
                 });
                 //tampilan table
                 $('#barang').DataTable()

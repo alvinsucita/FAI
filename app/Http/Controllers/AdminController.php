@@ -81,7 +81,9 @@ class AdminController extends Controller
         $newuser->rating = 5;
         $newuser->unique_click = 0;
         $file = $request->file('file');
-        $newuser->image = $file->getClientOriginalName(); //ini upload file beneran apa pick file di public?
+        $tujuan_upload = 'uploads';
+        $newuser->image = $tujuan_upload.'/'.$file->getClientOriginalName();
+        $file->move($tujuan_upload,$file->getClientOriginalName());
         $newuser->save();
         return back();
         // return back();
