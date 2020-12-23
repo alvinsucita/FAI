@@ -219,7 +219,8 @@ class UserController extends Controller
             "jenis"=>$user2->name,
             "harga"=>$user->harga,
             "buy"=>87,
-            "stok"=>$user->stok
+            "stok"=>$user->stok,
+            "img"=>$user->image
         ]];
         $request->session()->put('cart', $temp);
         return back();
@@ -235,7 +236,8 @@ class UserController extends Controller
             "jenis"=>$user2->name,
             "harga"=>$user->harga,
             "buy"=>1,
-            "stok"=>$user->stok
+            "stok"=>$user->stok,
+            "img"=>$user->image
         ];
         array_push($user1, $temp);
         $request->session()->put('cart', $user1);
@@ -252,7 +254,8 @@ class UserController extends Controller
             "jenis"=>$user2->name,
             "harga"=>$user->harga,
             "buy"=>1,
-            "stok"=>$user->stok
+            "stok"=>$user->stok,
+            "img"=>$user->image
         ];
         array_push($user1, $temp);
         $request->session()->put('cart', $user1);
