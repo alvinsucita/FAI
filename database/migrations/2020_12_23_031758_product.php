@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class Product extends Migration
 {
-    /**
+   /**
      * Run the migrations.
      *
      * @return void
@@ -23,6 +23,7 @@ class Product extends Migration
             $table->bigInteger('harga');
             $table->integer('stok');
             $table->integer('sold');
+            $table->string('size')->nullable();
             $table->enum('rating', [1, 2, 3, 4, 5]);
             $table->integer('unique_click');
             $table->longText('image')->nullable();

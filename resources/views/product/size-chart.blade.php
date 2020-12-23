@@ -1,0 +1,1 @@
+<img src="/size.svg" alt="Chart Size Woman" width="800" height="800">
