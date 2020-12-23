@@ -28,8 +28,12 @@
                             <td><div class="col-md-12">
                                 <div class="box box-success">
                                   <div class="box-header">
-                                      {{dd($cart)}}
                                     <h3 class="box-title">{{$cart[$i]["nama"]}}</h3>
+                                    <form class="form-horizontal" action="/user/eraseitem" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$cart[$i]["id"]}}">
+                                        <button type="submit" class="btn btn-danger pull-right">X</button>
+                                    </form>
 
                                     <!--div class="box-tools pull-right">
                                       <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -44,13 +48,13 @@
                                     <div class="col-sm-3">
                                         <form class="form-horizontal" action="/user/plusitem" method="post">
                                             @csrf
-                                            <input name="id" value="{{$cart[$i]["id"]}}">
-                                            <button type="submit" class="btn btn-primary pull-right">+</button>
+                                            <input type="hidden" name="id" value="{{$cart[$i]["id"]}}">
+                                            <button type="submit" class="btn btn-success pull-right">+</button>
                                         </form>
                                         <form class="form-horizontal" action="/user/minusitem" method="post">
                                             @csrf
-                                            <input name="id" value="{{$cart[$i]["id"]}}">
-                                            <button type="submit" class="btn btn-primary pull-right">-</button>
+                                            <input type="hidden" name="id" value="{{$cart[$i]["id"]}}">
+                                            <button type="submit" class="btn btn-warning pull-right">-</button>
                                         </form>
                                     </div>
                                   </div>
@@ -64,9 +68,9 @@
               </div>
               <div class="box-footer">
                 <div class="box-tools pull-right">
-                    Total: {{$coun}}
+                    Total: Rp {{$coun}},-
                 </div><br>
-                <form class="form-horizontal" action="/user/buy_item" method="get">
+                <form class="form-horizontal" action="/user/buy_item" method="post">
                     @csrf
                     <button type="submit" class="btn btn-primary pull-right">Buy</button>
                 </form>
