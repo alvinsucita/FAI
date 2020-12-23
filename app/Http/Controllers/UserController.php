@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Model\cart;
 use App\Model\usermodel;
+use App\Model\Category;
 use App\Model\penginapanmodel;
 use App\Model\vouchermodel;
 use Illuminate\Http\Request;
@@ -30,9 +31,14 @@ class UserController extends Controller
     function cart(Request $request){
         $user = $request->session()->get('auth');
         $cart = $request->session()->get('cart');
-        $coun = 0;
-        for($i=1;$i<count($cart);$i++){
-            $coun+=$cart[$i]["harga"];
+        if($cart==""){
+            $coun = 0;
+        }
+        else{
+            $coun = 0;
+            for($i=1;$i<count($cart);$i++){
+                $coun+=$cart[$i]["harga"];
+            }
         }
         return view('user.payment', ['user' => $user, 'cart' => $cart, 'count' => $cart, 'coun' => $coun]);
     }
@@ -118,14 +124,37 @@ class UserController extends Controller
         }
         return redirect('/user');
     }
+    function plusitem(Request $request){
+        $id = $request->id;
+        $user = $request->session()->get('cart');
+        for($i=1;$i<count($user);$i++){
+            if($user[$i]['barang_id']==$id){
+                $user[$i]["buy"]+=1;
+            }
+        }
+        $request->session()->put('cart', $user);
+        return back();
+    }
+    function minusitem(Request $request){
+        $id = $request->id;
+        $user = $request->session()->get('cart');
+        for($i=1;$i<count($user);$i++){
+            if($user[$i]['barang_id']==$id){
+                $user[$i]["buy"]-=1;
+            }
+        }
+        $request->session()->put('cart', $user);
+        return back();
+    }
 
     function cart_dummy1(Request $request){
         $user = cart::find(1);
         //dd($user);
+        $user2 = Category::find($user->category_id);
         $temp = ["count"=>1, 1=>[
-            "id"=>$user->barang_id,
-            "nama"=>$user->nama,
-            "jenis"=>$user->jenis,
+            "id"=>$user->product_id,
+            "nama"=>$user->name,
+            "jenis"=>$user2->name,
             "harga"=>$user->harga,
             "buy"=>1,
             "stok"=>$user->stok
@@ -137,10 +166,11 @@ class UserController extends Controller
         $user1 = $request->session()->get('cart');
         $user1["count"] += 1;
         $user = cart::find(2);
+        $user2 = cart::find($user->category_id);
         $temp = [
-            "id"=>$user->barang_id,
-            "nama"=>$user->nama,
-            "jenis"=>$user->jenis,
+            "id"=>$user->product_id,
+            "nama"=>$user->name,
+            "jenis"=>$user2->name,
             "harga"=>$user->harga,
             "buy"=>1,
             "stok"=>$user->stok
@@ -153,10 +183,11 @@ class UserController extends Controller
         $user1 = $request->session()->get('cart');
         $user1["count"] += 1;
         $user = cart::find(3);
+        $user2 = cart::find($user->category_id);
         $temp = [
-            "id"=>$user->barang_id,
-            "nama"=>$user->nama,
-            "jenis"=>$user->jenis,
+            "id"=>$user->product_id,
+            "nama"=>$user->name,
+            "jenis"=>$user2->name,
             "harga"=>$user->harga,
             "buy"=>1,
             "stok"=>$user->stok
@@ -167,12 +198,12 @@ class UserController extends Controller
     }
     function cart_dummy1plus(Request $request){
         $user = $request->session()->get('cart');
-        $user[0]->stok += 1;
+        $user[0]->buy += 1;
         return back();
     }
     function cart_dummy1minus(Request $request){
         $user = $request->session()->get('cart');
-        $user[0]->stok -= 1;
+        $user[0]->buy -= 1;
         return back();
     }
     function cart_erase(Request $request){

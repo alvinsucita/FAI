@@ -84,6 +84,8 @@ Route::group(['middleware' => 'login-user'], function() {
         Route::post('/edit_prof', 'UserController@edit_prof');
         Route::get('/cart', 'UserController@cart');
         Route::get('/buy_item', 'UserController@buy_form');
+        Route::post('/plusitem', 'UserController@plusitem');
+        Route::post('/minusitem', 'UserController@minusitem');
         // Route::get('/', 'UserController@home');
         Route::get('/aboutus', 'UserController@aboutus');
         Route::get('/dummy1', 'UserController@cart_dummy1');

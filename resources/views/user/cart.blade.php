@@ -40,7 +40,19 @@
                                   <div class="box-body">
                                     <div class="col-sm-2">{{$cart[$i]["jenis"]}}</div>
                                     <div class="col-sm-3">Rp {{$cart[$i]["harga"]}},-</div>
-                                    <div class="col-sm-7">x {{$cart[$i]["buy"]}}</div>
+                                    <div class="col-sm-4">x {{$cart[$i]["buy"]}}</div>
+                                    <div class="col-sm-3">
+                                        <form class="form-horizontal" action="/user/plusitem" method="post">
+                                            @csrf
+                                            <input name="id" value="{{$cart[$i]["id"]}}">
+                                            <button type="submit" class="btn btn-primary pull-right">+</button>
+                                        </form>
+                                        <form class="form-horizontal" action="/user/minusitem" method="post">
+                                            @csrf
+                                            <input name="id" value="{{$cart[$i]["id"]}}">
+                                            <button type="submit" class="btn btn-primary pull-right">-</button>
+                                        </form>
+                                    </div>
                                   </div>
                                   <!-- /.box-body -->
                                 </div>
