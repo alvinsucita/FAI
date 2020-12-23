@@ -15,7 +15,7 @@
               <div class="box-header with-border">
                 <h3 class="box-title">Detail</h3>
               </div>
-              @if($htrans==null)
+              @if($dtrans==null)
               <div class="form-group">
                 <label class="col-sm-12 control-label">Your detail is empty</label>
               </div>
@@ -26,17 +26,20 @@
                     <tr>
                         <th>Detail transaksi</th>
                         <th>Item</th>
-                        <th>Item</th>
+                        <th>Quantity</th>
                     </tr>
-                    @for($i=0;$i<count($htrans);$i++)
+                    @for($i=0;$i<count($dtrans);$i++)
                         <tr>
                             <td>{{$i+1}}</td>
                             <td>
-                                <form class="form-horizontal" action="/user/dtrans_show" method="post">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{$htrans[$i]->htrans_id}}">
-                                    <button type="submit" class="btn btn-success pull-left">Detail</button>
-                                </form>
+                                @for($j=0;$j<count($barang);$j++)
+                                    @if($barang[$j]->product_id==$dtrans[$i]->barang_id)
+                                    {{$barang[$j]->name}}
+                                    @endif
+                                @endfor
+                            </td>
+                            <td>
+                                {{$dtrans[$i]->qty}}
                             </td>
                         </tr>
                     @endfor

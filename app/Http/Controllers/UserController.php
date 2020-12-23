@@ -64,7 +64,8 @@ class UserController extends Controller
         $user = $request->session()->get('auth');
         $cart = $request->session()->get('cart');
         $dtrans = Dtrans::where('htrans_id', '=', $id)->get();
-        return view('user.history_detail', ['user' => $user, 'cart' => $cart, 'dtrans' => $dtrans]);
+        $barang = cart::all();
+        return view('user.history_detail', ['user' => $user, 'cart' => $cart, 'dtrans' => $dtrans, 'barang' => $barang]);
     }
     function pass_change(Request $request){
         $user = $request->session()->get('auth');
