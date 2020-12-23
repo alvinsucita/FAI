@@ -8,23 +8,50 @@ use App\Model\Dtrans;
 use App\Model\Cart; //barang kok modelnya namanya cart???
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
-    public function login(){
-        return view('admin.dashboard');
+    public function log(){
+        return view('admin.login');
+    }
+    public function login(Request $request){
+        $username = $request->username;
+        $password = $request->password;
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+        $halo = "hai";
+        if($username=="asd"&&$password=="123"){
+            $request->session()->put('admin', $halo);
+            return redirect("/admin");
+        }
+        else{
+            return back();
+        }
+    }
+    public function logout(Request $request)
+    {
+        $request->session()->forget('admin');
+        $request->session()->save();
+        return redirect('/admin/login');
     }
     public function home(){
-        $barangs = Cart::all();
-        $categories = Category::all();
-        $users = Users::all();
-        $trans = Htrans::all();
-        return view('admin.dashboard', [
-            'products' => $barangs,
-            'categories' => $categories,
-            'users' => $users,
-            'trans' => $trans
-        ]);
+        if(Session::has('admin')){
+            $barangs = Cart::all();
+            $categories = Category::all();
+            $users = Users::all();
+            $trans = Htrans::all();
+            return view('admin.dashboard', [
+                'products' => $barangs,
+                'categories' => $categories,
+                'users' => $users,
+                'trans' => $trans
+            ]);
+        }
+        else return redirect("/admin/login");
     }
     public function allbarang(){
         $barangs = Cart::all();
@@ -40,6 +67,12 @@ class AdminController extends Controller
     }
     public function insert(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric'
+        ]);
         $newuser = new Cart();
         $newuser->name = $request->name;
         $newuser->category_id = $request->category;
@@ -56,6 +89,13 @@ class AdminController extends Controller
     }
     public function update(Request $request)
     {
+        $request->validate([
+            'update_id' => 'required',
+            'update_name' => 'required',
+            'update_category' => 'required',
+            'update_price' => 'required|numeric',
+            'update_stock' => 'required|numeric'
+        ]);
         Cart::where('product_id', '=', $request->update_id)->update([
             'name' => $request->update_name,
             'category_id' => $request->update_category,
@@ -86,8 +126,12 @@ class AdminController extends Controller
         $stringbuilder = "Untuk ".$user->username.": ";
         foreach ($dtrans as $d) {
             $barang = Cart::where('product_id', '=', $d->barang_id)->first();
-            $stringbuilder = $stringbuilder . $d->qty . "x " . $barang->name . " (Rp ".($barang->harga*$d->qty).");";
+            $stringbuilder = $stringbuilder . $d->qty . "x " . $barang->name . " (Rp ".($barang->harga*$d->qty)."); ";
         }
+        $paid = "";
+        if(Str::lower($htrans->paid)=="y") $paid = "(LUNAS)";
+        else if(Str::lower($htrans->paid)=="n") $paid = "(BELUM DIBAYAR)";
+        $stringbuilder = $stringbuilder.$paid;
         echo '<script type="text/javascript">
                 alert("'.$stringbuilder.'");
                 history.back();

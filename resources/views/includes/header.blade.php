@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/" style="color:#ffdb58;">Home</a></li>
-                        <li><a href="/admin" style="color:#ffdb58">Admin</a></li>
+                        <li><a href="/admin/login" style="color:#ffdb58">Admin</a></li>
                         <li><a href="/aboutus" style="color:#ffdb58">About Us</a></li>
                     </ul>
                 </div>

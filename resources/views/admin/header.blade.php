@@ -11,8 +11,7 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <li>
-                        {{-- <a href="{{ url('/logout') }}"> --}}
-                        <a href="{{ url('/') }}">
+                        <a onclick="logout()">
                             <span>Sign Out</span>
                         </a>
                     </li>
