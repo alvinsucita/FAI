@@ -104,6 +104,7 @@ Route::group(['middleware' => 'login-user'], function() {
         Route::post('/dtrans_show', 'UserController@historydetail');
         Route::post('/status', 'UserController@status');
         Route::post('/diterima', 'UserController@diterima');
+        Route::post('/rating', 'UserController@rating');
         // Route::get('/', 'UserController@home');
         Route::get('/aboutus', 'UserController@aboutus');
         Route::get('/dummy1', 'UserController@cart_dummy1');
