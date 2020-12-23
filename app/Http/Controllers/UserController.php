@@ -70,7 +70,7 @@ class UserController extends Controller
     function pass_change(Request $request){
         $user = $request->session()->get('auth');
         $cart = $request->session()->get('cart');
-        return view('user.password', ['user' => $user, 'count' => $cart]);
+        return view('user.password', ['user' => $user, 'cart' => $cart]);
     }
     function change_p(Request $request){
         $rules = [
