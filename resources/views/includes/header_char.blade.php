@@ -17,8 +17,6 @@
                 <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/user" style="color:#ffdb58;">Home</a></li>
-                        <li><a href="/user/browse" style="color:#ffdb58">Browse</a></li>
-                        <li><a href="/user/buy" style="color:#ffdb58">Buy</a></li>
                         <li><a href="/user/aboutus" style="color:#ffdb58">About Us</a></li>
                     </ul>
                 </div>
@@ -27,8 +25,8 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/user/cart"><i class="fa fa-shopping-cart"></i>
                             @if($cart!="")
-                                @if($count>0)
-                                <span class="label label-danger">{{count($count)-1}}</span>
+                                @if($cart["count"]>0)
+                                <span class="label label-danger">{{$cart["count"]}}</span>
                                 @endif
                             @endif
                         </a></li>

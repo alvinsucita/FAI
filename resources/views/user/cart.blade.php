@@ -42,6 +42,7 @@
                                   </div>
                                   <!-- /.box-header -->
                                   <div class="box-body">
+                                    <div class="col-sm-12"><img style="width: 70px; height: 70px;" src="{{url("/".$cart[$i]["img"])}}"></div>
                                     <div class="col-sm-2">{{$cart[$i]["jenis"]}}</div>
                                     <div class="col-sm-3">Rp {{$cart[$i]["harga"]}},-</div>
                                     <div class="col-sm-4">x {{$cart[$i]["buy"]}}</div>

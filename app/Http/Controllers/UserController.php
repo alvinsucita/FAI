@@ -64,12 +64,13 @@ class UserController extends Controller
         $user = $request->session()->get('auth');
         $cart = $request->session()->get('cart');
         $dtrans = Dtrans::where('htrans_id', '=', $id)->get();
-        return view('user.history_detail', ['user' => $user, 'cart' => $cart, 'dtrans' => $dtrans]);
+        $barang = cart::all();
+        return view('user.history_detail', ['user' => $user, 'cart' => $cart, 'dtrans' => $dtrans, 'barang' => $barang]);
     }
     function pass_change(Request $request){
         $user = $request->session()->get('auth');
         $cart = $request->session()->get('cart');
-        return view('user.password', ['user' => $user, 'count' => $cart]);
+        return view('user.password', ['user' => $user, 'cart' => $cart]);
     }
     function change_p(Request $request){
         $rules = [
@@ -218,7 +219,8 @@ class UserController extends Controller
             "jenis"=>$user2->name,
             "harga"=>$user->harga,
             "buy"=>87,
-            "stok"=>$user->stok
+            "stok"=>$user->stok,
+            "img"=>$user->image
         ]];
         $request->session()->put('cart', $temp);
         return back();
@@ -234,7 +236,8 @@ class UserController extends Controller
             "jenis"=>$user2->name,
             "harga"=>$user->harga,
             "buy"=>1,
-            "stok"=>$user->stok
+            "stok"=>$user->stok,
+            "img"=>$user->image
         ];
         array_push($user1, $temp);
         $request->session()->put('cart', $user1);
@@ -251,7 +254,8 @@ class UserController extends Controller
             "jenis"=>$user2->name,
             "harga"=>$user->harga,
             "buy"=>1,
-            "stok"=>$user->stok
+            "stok"=>$user->stok,
+            "img"=>$user->image
         ];
         array_push($user1, $temp);
         $request->session()->put('cart', $user1);

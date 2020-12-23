@@ -36,10 +36,9 @@ class AdminController extends Controller
     {
         $request->session()->forget('admin');
         $request->session()->save();
-        return redirect('/admin/login');
     }
     public function home(){
-        if(Session::has('admin')){
+        // if(Session::has('admin')){
             $barangs = Cart::all();
             $categories = Category::all();
             $users = Users::all();
@@ -50,8 +49,8 @@ class AdminController extends Controller
                 'users' => $users,
                 'trans' => $trans
             ]);
-        }
-        else return redirect("/admin/login");
+        // }
+        // else return redirect("/admin/login");
     }
     public function allbarang(){
         $barangs = Cart::all();
