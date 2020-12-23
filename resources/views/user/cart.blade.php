@@ -71,7 +71,7 @@
                 <div class="box-tools pull-right">
                     Total: Rp {{$coun}},-
                 </div><br>
-                <form class="form-horizontal" action="/user/buy_item" method="get">
+                <form class="form-horizontal" action="/user/buy_item" method="post">
                     @csrf
                     <button type="submit" class="btn btn-primary pull-right">Buy</button>
                 </form>

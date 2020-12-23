@@ -33,11 +33,19 @@
                             <td>{{$i+1}}</td>
                             <td>{{$htrans[$i]->paid}}</td>
                             <td>
+                                @if($htrans[$i]->paid=="Y")
                                 <form class="form-horizontal" action="/user/dtrans_show" method="post">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$htrans[$i]->htrans_id}}">
                                     <button type="submit" class="btn btn-success pull-left">Detail</button>
                                 </form>
+                                @else
+                                <form class="form-horizontal" action="/user/status" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$htrans[$i]->htrans_id}}">
+                                    <button type="submit" class="btn btn-success pull-left">Status</button>
+                                </form>
+                                @endif
                             </td>
                         </tr>
                     @endfor
