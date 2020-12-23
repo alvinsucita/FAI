@@ -60,10 +60,11 @@ class UserController extends Controller
         return view('user.history', ['user' => $user, 'cart' => $cart, 'htrans' => $htrans]);
     }
     function historydetail(Request $request){
+        $id = $request->id;
         $user = $request->session()->get('auth');
         $cart = $request->session()->get('cart');
-        $htrans = Htrans::where('user_id', '=', $user->id)->get();
-        return view('user.history_detail', ['user' => $user, 'cart' => $cart, 'htrans' => $htrans]);
+        $dtrans = Dtrans::where('htrans_id', '=', $id)->get();
+        return view('user.history_detail', ['user' => $user, 'cart' => $cart, 'dtrans' => $dtrans]);
     }
     function pass_change(Request $request){
         $user = $request->session()->get('auth');
@@ -188,7 +189,7 @@ class UserController extends Controller
         $user1 = $request->session()->get('auth');
         $data = new Htrans();
         $data->user_id = $user1->id;
-        $data->paid = 'Y';
+        $data->paid = 'N';
         $data->save();
         // dd($data->htrans_id);
         for($i=1;$i<count($user);$i++){
