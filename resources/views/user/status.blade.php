@@ -47,7 +47,7 @@
                                             @csrf
                                             <input type="hidden" name="id" value="{{$dtrans[$i]->dtrans_id}}">
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="Rating" value="" name="rat{{$i}}">
+                                                <input type="text" class="form-control" placeholder="Rating" value="" name="rat">
                                             </div>
                                             <div class="col-sm-3">
                                                 <button type="submit" class="btn btn-primary pull-right">Submit</button>
@@ -61,6 +61,7 @@
                     <div class="box-footer">
                         <form class="form-horizontal" action="/user/diterima" method="post">
                             @csrf
+                            <input type="hidden" name="id" value="{{$dtrans[0]->htrans_id}}">
                             <button type="submit" class="btn btn-success pull-right">Diterima</button>
                         </form>
                     </div>

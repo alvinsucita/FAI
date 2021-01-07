@@ -39,13 +39,12 @@
                                     <input type="hidden" name="id" value="{{$htrans[$i]->htrans_id}}">
                                     <button type="submit" class="btn btn-success pull-left">Detail</button>
                                 </form>
-                                @else
+                                @endif
                                 <form class="form-horizontal" action="/user/status" method="post">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$htrans[$i]->htrans_id}}">
                                     <button type="submit" class="btn btn-success pull-left">Status</button>
                                 </form>
-                                @endif
                             </td>
                         </tr>
                     @endfor

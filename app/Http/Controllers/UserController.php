@@ -23,12 +23,12 @@ class UserController extends Controller
     function home(Request $request){
         $user = $request->session()->get('auth');
         $cart = $request->session()->get('cart');
-        return view('user.home', ['user' => $user, 'count' => $cart]);
+        return view('user.home', ['user' => $user, 'cart' => $cart]);
     }
     function aboutus(Request $request){
         $user = $request->session()->get('auth');
         $cart = $request->session()->get('cart');
-        return view('user.aboutus', ['user' => $user, 'count' => $cart]);
+        return view('user.aboutus', ['user' => $user, 'cart' => $cart]);
     }
     function cart(Request $request){
         $user = $request->session()->get('auth');
@@ -76,6 +76,26 @@ class UserController extends Controller
         $htrans->save();
         return redirect('/user');
     }
+    function rating(Request $request){
+        $id = $request->id;
+        $dtrans = Dtrans::find($id);
+        $dtrans->rating=$request->rat;
+        $dtrans->save();
+        $cart = cart::find($dtrans->barang_id);
+        $cart1 = Dtrans::where('barang_id', '=', $dtrans->barang_id)->get();
+        $count=0;
+        $ctr=0;
+        for($i=0;$i<count($cart1);$i++){
+            if($cart1[$i]->rating>-1){
+                $count += $cart1[$i]->rating;
+                $ctr++;
+            }
+        }
+        $count=$count/$ctr;
+        $cart->rating=$count;
+        $cart->save();
+        return redirect('/user/history');
+    }
     function historydetail(Request $request){
         $id = $request->id;
         $user = $request->session()->get('auth');
@@ -121,7 +141,7 @@ class UserController extends Controller
     function profile(Request $request){
         $user = $request->session()->get('auth');
         $cart = $request->session()->get('cart');
-        return view('user.profile', ['user' => $user, 'count' => $cart]);
+        return view('user.profile', ['user' => $user, 'cart' => $cart]);
     }
     function edit_prof(Request $request){
         $rules = [
@@ -245,7 +265,7 @@ class UserController extends Controller
     function cart_dummy2(Request $request){
         $user1 = $request->session()->get('cart');
         $user1["count"] += 1;
-        $user = cart::find(2);
+        $user = cart::find(4);
         $user2 = cart::find($user->category_id);
         $temp = [
             "id"=>$user->product_id,
@@ -263,7 +283,7 @@ class UserController extends Controller
     function cart_dummy3(Request $request){
         $user1 = $request->session()->get('cart');
         $user1["count"] += 1;
-        $user = cart::find(3);
+        $user = cart::find(4);
         $user2 = cart::find($user->category_id);
         $temp = [
             "id"=>$user->product_id,

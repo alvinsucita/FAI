@@ -5,6 +5,23 @@
         onload="onGooglePayLoaded()">
     </script-->
     <button id="pay-button">PAY</button>
+
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="000000"></script>
+    <script type="text/javascript">
+      document.getElementById('pay-button').onclick = function(){
+        snap.pay(000000, {
+          onSuccess: function(result){
+            document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          },
+          onPending: function(result){
+            document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          },
+          onError: function(result){
+            document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          }
+        });
+      };
+    </script>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -107,20 +124,4 @@
             merchantName: 'Example Merchant'
         };
     </script-->
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="000000"></script>
-    <script type="text/javascript">
-      document.getElementById('pay-button').onclick = function(){
-        snap.pay(000000, {
-          onSuccess: function(result){
-            document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          onPending: function(result){
-            document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          onError: function(result){
-            document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          }
-        });
-      };
-    </script>
 @endsection
